@@ -27,7 +27,7 @@
         <td><input type="text" name="test" value="${element.enquiry_id}"></td>
             <td>${element.firstName}</td> 
              <td>${element.mobileNumber}</td> 
-            <td><a href="./EditEnquiry?enquiryId=${element.enquiry_id}">Edit</a></td>
+            <td><a href="./EditEnquiry?enquiryId=${element.enquiryNumber}">Edit</a></td>
         </tr> 
     </c:forEach>
     </tbody>

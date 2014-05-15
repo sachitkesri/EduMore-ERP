@@ -1,7 +1,9 @@
 package com.edumore.counsellor.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +45,20 @@ public class EditEnquiry extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String enquiryId = request.getParameter("enquiryId");
-		EnquiryBean enquiryBean = new EditEnquiryBusiness().editEnquiry(enquiryId);
+		try {
+			EnquiryBean enquiryBean = new EditEnquiryBusiness()
+					.editEnquiry(enquiryId);
+			request.setAttribute("enquiry", enquiryBean);
+			RequestDispatcher rd = request
+					.getRequestDispatcher("editEnquiry.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
