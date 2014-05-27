@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.edumore.counsellor.bean.FollowupBean;
 import com.edumore.counsellor.business.FollowupBusiness;
@@ -23,34 +22,37 @@ import com.edumore.counsellor.business.FollowupBusiness;
 @WebServlet("/ListFollowup")
 public class FollowUpList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FollowUpList() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FollowUpList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
-			List<FollowupBean> followupBeans = FollowupBusiness.listFollowup(request.getParameter("enquiryId").toString());
+			List<FollowupBean> followupBeans = FollowupBusiness
+					.listFollowup(request.getParameter("enquiryId").toString());
 			System.out.println(followupBeans.size());
 			request.setAttribute("followuplist", followupBeans);
 			JSONArray jsonFollowUpList = new JSONArray();
 			JSONObject jsonObject = new JSONObject();
-			
-			for(FollowupBean bean : followupBeans){
+			for (FollowupBean bean : followupBeans) {
 				try {
-					jsonObject.put("date",String.valueOf(bean.getDate()));
-					jsonObject.put("remarks",bean.getRemarks());
-					jsonObject.put("enquiryId",bean.getEnquiryId());
-					jsonObject.put("followupId",String.valueOf(bean.getFollowupId()));
-					jsonFollowUpList.put(jsonObject);
-				} catch (JSONException e) {
+					jsonObject.put("date", String.valueOf(bean.getDate()));
+					jsonObject.put("remarks", bean.getRemarks());
+					jsonObject.put("enquiryId", bean.getEnquiryId());
+					jsonObject.put("followupId",
+							String.valueOf(bean.getFollowupId()));
+					jsonFollowUpList.add(jsonObject);
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -58,12 +60,12 @@ public class FollowUpList extends HttpServlet {
 			JSONObject jsonObject2 = new JSONObject();
 			try {
 				jsonObject2.put("followupList", jsonFollowUpList);
-			} catch (JSONException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.getWriter().write(jsonObject2.toString());
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,13 +73,15 @@ public class FollowUpList extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
