@@ -20,24 +20,24 @@
 	};
 	
 	function viewFollowUp(enquiryId){
-		$.ajax({
-			url: "./ListFollowup?enquiryId=" +enquiryId,
-           	type: "GET",
-            processData: false,
-          	contentType :false,
-          	success: function (resp) {
-          		console.log(resp);
-          		var followupList = resp['followupList'];
-          		for(var key in followupList){
-          			console.log(key);
-          		} 
-          		$.blockUI({
-    	        	message: "<table><thead><tr><td><p>S.No</p></td><td><p>Date</p></td><td><p>Remarks</p></td></tr></thead><tbody><% int j=1; %><c:forEach var='element' items='${followuplist}'><tr><td><%=j %> </td> <td>${element.firstName}</td><td>${element.date}</td><td>${element.remarks}</td> <td><a href='./EditEnquiry?enquiryId=${element.enquiryId}'>Edit</a></td></tr> <% j++; %></c:forEach></tbody></table>"
-    	    }); 
-    	    $("#cancel").click(function(){
-    	    	$.unblockUI();
-    		});
-          	}
+		$.getJSON("./ListFollowup?enquiryId=" +enquiryId, function(result) {
+			var followupList = result.followupList;
+			var displayFollowupList = '<tbody>'; 
+			for(var key in followupList){
+				displayFollowupList = displayFollowupList + "<tr>";
+				$.each(followupList[key], function(objKey, objValue){
+					displayFollowupList = displayFollowupList + "<td>"+objValue+"</td>";
+				});
+				displayFollowupList = displayFollowupList + "<td><a href='./EditEnquiry?enquiryId=${element.enquiryId}'>Edit</a></td>";
+				displayFollowupList = displayFollowupList + "</tr>";
+      		} 
+			displayFollowupList = displayFollowupList + "</tbody>";
+			
+			$.blockUI({
+	        		message: "<table><thead><tr><td><p>S.No</p></td><td><p>Date</p></td><td><p>Remarks</p></td></tr></thead>"+displayFollowupList+"</table>"
+	    	}); 
+		}, function(error) {
+			console.log(error);
 		});
 		
 	};
