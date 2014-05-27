@@ -2,6 +2,7 @@ package com.edumore.counsellor.bean;
 
 public class Address {
 	
+	private int addressId;
 	private String houseNumber;
 	private String buildingName;
 	private String roadName;
@@ -9,7 +10,15 @@ public class Address {
 	private String city;
 	private String state;
 	private String pincode;
+	private long enquiryNumber;
+	private String addressType;
 	
+	public int getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
 	public String getHouseNumber() {
 		return houseNumber;
 	}
@@ -51,6 +60,18 @@ public class Address {
 	}
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+	public long getEnquiryNumber() {
+		return enquiryNumber;
+	}
+	public void setEnquiryNumber(long enquiryNumber) {
+		this.enquiryNumber = enquiryNumber;
+	}
+	public String getAddressType() {
+		return addressType;
+	}
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
 	}
 	
 	

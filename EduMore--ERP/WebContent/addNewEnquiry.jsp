@@ -5,6 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+var educationNumber = 1;
+
+$(document).ready(function(){
+	$("#educationNumber").val(educationNumber);
+    $("#addNewRow").click(function(){
+    	educationNumber++;
+        $("#educationDetails").append('<tr><td><input type="text" name="qualification_'+educationNumber+'"></input></td><td><input type="text" name="status_'+educationNumber+'"></input></td><td><input type="text" name="schoolName_'+educationNumber+'"></input></td><td><input type="text" name="board_'+educationNumber+'"></input></td><td><input type="text" name="completedYear_'+educationNumber+'"></input></td><td><input type="text" name="marksSecured_'+educationNumber+'"></input></td></tr>');
+        $("#educationNumber").val(educationNumber);
+        
+    });
+});
+</script>
 </head>
 <body>
 
@@ -66,7 +80,7 @@
 <label>D.O.B</label>
 <input type="text" name="dateOfBirth"></input><br>
 
-<table>
+<table id="educationDetails">
 <thead>
 <tr>
 	<td>
@@ -94,28 +108,28 @@
 <tbody>
 <tr>
 	<td>
-		<input type="text" name="qualification"></input>
+		<input type="text" name="qualification_'+educationNumber+'"></input>
 	</td>
 	<td>
-		<input type="text" name="status"></input>
+		<input type="text" name="status_1"></input>
 	</td>
 	<td>
-		<input type="text" name="schoolName"></input>
+		<input type="text" name="schoolName_1"></input>
 	</td>
 	<td>
-		<input type="text" name="board"></input>
+		<input type="text" name="board_1"></input>
 	</td>
 	<td>
-		<input type="text" name="completedYear"></input>
+		<input type="text" name="completedYear_1"></input>
 	</td>
 	<td>
-		<input type="text" name="marksSecured"></input>
+		<input type="text" name="marksSecured_1"></input>
 	</td>
 
 	
 </tr>
 </tbody>
-</table>
+</table><a href="javascript:void(0);" id="addNewRow">Add New row</a><input type="hidden" id="educationNumber" name="educationNumber" value=educationNumber></input>
 <br>
 <label>Details of IT Program done</label><br>
 <label>Program</label>

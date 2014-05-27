@@ -8,11 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% EnquiryBean bean = (EnquiryBean)request.getAttribute("enquiry");
-System.out.println("Test123456");
-System.out.println(bean.getFirstName());
-%>
+<% EnquiryBean bean = (EnquiryBean)request.getAttribute("enquiry");%>
 <form action="./NewEnquiry" method="post">
+<input type="hidden" value="updateEnquiry" name="action"/>
+<input type="text" value=<%= bean.getEnquiryNumber()  %> name="enquiryNumber"/>
+<input type="text" value=<%= bean.getEnquiry_id()  %> name="enquiryId"/>
 <label> First Name</label>
 <input type="text" name="firstName" value=<%= bean.getFirstName()  %>></input>
 <label>Middle Name</label>
@@ -52,19 +52,19 @@ System.out.println(bean.getFirstName());
 <input type="text" name="currentPincode" value=<%= bean.getCurrentAddress().getPincode()  %>></input><br>
 <label>Permanent Address</label><br>
 <label>House/Flat/Block No.</label>
-<input type="text" name="permanentHouseNumber"></input>
+<input type="text" name="permanentHouseNumber" value=<%= bean.getPermanentAddress().getHouseNumber()  %>></input>
 <label>Building/Village/Premise</label>
-<input type="text" name="permanentBuilding"></input>
+<input type="text" name="permanentBuilding" value=<%= bean.getPermanentAddress().getBuildingName() %>></input>
 <label>Road/Street/ Post Office</label>
-<input type="text" name="permanentRoad"></input><br>
+<input type="text" name="permanentRoad" value=<%= bean.getPermanentAddress().getRoadName()  %>></input><br>
 <label>Area Detail</label>
-<input type="text" name="permanentrArea"></input><br>
+<input type="text" name="permanentrArea" value=<%= bean.getPermanentAddress().getAreaDetail()  %>></input><br>
 <label>District/Town/City</label>
-<input type="text" name="permanentCity"></input>
+<input type="text" name="permanentCity" value=<%= bean.getPermanentAddress().getCity()  %>></input>
 <label>State</label>
-<input type="text" name="permanentState"></input>
+<input type="text" name="permanentState" value=<%= bean.getPermanentAddress().getState()  %>></input>
 <label>Pincode</label>
-<input type="text" name="permanentPincode"></input><br>
+<input type="text" name="permanentPincode" value=<%= bean.getPermanentAddress().getPincode()  %>></input><br>
 <label>Gender</label>
 <input type="text" name="gender" value=<%= bean.getGender() %>></input>
 <label>D.O.B</label>

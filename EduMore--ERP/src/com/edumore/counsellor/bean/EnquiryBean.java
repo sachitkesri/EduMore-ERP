@@ -1,5 +1,7 @@
 package com.edumore.counsellor.bean;
 
+import java.util.ArrayList;
+
 public class EnquiryBean {
 	
 	private int enquiry_id;
@@ -21,6 +23,8 @@ public class EnquiryBean {
 	
 	private Address currentAddress;
 	private Address permanentAddress;
+	
+	private ArrayList<EducationalQualification> educationalQualifications = new ArrayList<EducationalQualification>();
 	
 	private int counsellorId;
 	
@@ -158,6 +162,15 @@ public class EnquiryBean {
 
 	public void setPermanentAddress(Address permanentAddress) {
 		this.permanentAddress = permanentAddress;
+	}
+
+	public ArrayList<EducationalQualification> getEducationalQualifications() {
+		return educationalQualifications;
+	}
+
+	public void setEducationalQualifications(
+			ArrayList<EducationalQualification> educationalQualifications) {
+		this.educationalQualifications = educationalQualifications;
 	}
 
 	public int getCounsellorId() {
