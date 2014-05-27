@@ -28,6 +28,9 @@ public class EnquiryBean {
 	
 	private int counsellorId;
 	
+	private String enquiry_status;
+	private String admission_status;
+	
 	public int getEnquiry_id() {
 		return enquiry_id;
 	}
@@ -179,6 +182,22 @@ public class EnquiryBean {
 
 	public void setCounsellorId(int counsellorId) {
 		this.counsellorId = counsellorId;
+	}
+
+	public String getEnquiry_status() {
+		return enquiry_status;
+	}
+
+	public void setEnquiry_status(String enquiry_status) {
+		this.enquiry_status = enquiry_status;
+	}
+
+	public String getAdmission_status() {
+		return admission_status;
+	}
+
+	public void setAdmission_status(String admission_status) {
+		this.admission_status = admission_status;
 	}
 	
 	

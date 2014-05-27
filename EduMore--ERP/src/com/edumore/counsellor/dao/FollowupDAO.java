@@ -72,6 +72,20 @@ public class FollowupDAO {
 		
 		return followupBeans;
 	}
+
+	public static String checkEnquiryStatus(String enquiryId) throws SQLException, ClassNotFoundException {
+		String query = "SELECT enquiry_status FROM enquiry_details where enquiry_id = " + enquiryId;
+		String enquiryStatus = "";
+		con = EdumoreDBConnection.getDBConnection();
+		Statement st = null;
+		st = con.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		while (rs.next()) {
+			enquiryStatus = rs.getString(1);
+		}
+		System.out.println("Here.." + enquiryStatus);
+		return enquiryStatus;
+	}
 	
 
 }

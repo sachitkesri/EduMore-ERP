@@ -6,28 +6,96 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script src="js/jquery.blockUI.js"></script>
 <script>
 	function addNewFollowUp(enquiryId){
-		$.blockUI({
-	        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>',
-	        	overlayCSS : {
-					opacity : 0.5
-				},
-				css : {
-					border : 'none',
-					padding : '15px',
-					'-webkit-border-radius' : '10px',
-					'-moz-border-radius' : '10px',
-					opacity : 1,
-					
-				}
-			
-	    }); 
-	    $("#cancel").click(function(){
-	    	$.unblockUI();
+		console.log("Here.");
+		$.get("./EnquiryStatus?enquiryId=" +enquiryId,function(response){
+			if(response === "open"){
+				$.blockUI({
+		        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>',
+		        	overlayCSS : {
+						opacity : 0.5 
+					},
+					css : {
+						border : 'none',
+						padding : '15px',
+						'-webkit-border-radius' : '10px',
+						'-moz-border-radius' : '10px',
+						opacity : 1,
+						
+					}
+				
+		   		}); 
+			    $("#cancel").click(function(){
+			    	$.unblockUI();
+				});
+				
+			}else if(response === "close"){
+				$.blockUI({
+		        	message: 'This enquiry has been closed. <a id="viewFollowup" href="javascript:viewFollowUp('+enquiryId+')">View Follow Up</a>',
+		        	overlayCSS : {
+						opacity : 0.5 
+					},
+					css : {
+						border : 'none',
+						padding : '15px',
+						'-webkit-border-radius' : '10px',
+						'-moz-border-radius' : '10px',
+						opacity : 1,
+						
+					}
+				
+		   		}); 
+				
+			}
 		});
+		
+		
+		/*  function(result) {
+			
+			console.log(result);
+			if(result === "open"){
+				$.blockUI({
+		        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>',
+		        	overlayCSS : {
+						opacity : 0.5 
+					},
+					css : {
+						border : 'none',
+						padding : '15px',
+						'-webkit-border-radius' : '10px',
+						'-moz-border-radius' : '10px',
+						opacity : 1,
+						
+					}
+				
+		   		}); 
+			    $("#cancel").click(function(){
+			    	$.unblockUI();
+				});
+			}else if(result === "close"){
+				$.blockUI({
+		        	message: 'This enquiry has been closed. <a id="viewFollowup" href="javascript:viewFollowUp('+enquiryId+')">View Follow Up</a>',
+		        	overlayCSS : {
+						opacity : 0.5 
+					},
+					css : {
+						border : 'none',
+						padding : '15px',
+						'-webkit-border-radius' : '10px',
+						'-moz-border-radius' : '10px',
+						opacity : 1,
+						
+					}
+				
+		   		}); 
+			}
+		},function(error){
+			console.log(error);
+		}); */
+		
 	    
 	};
 	
@@ -40,7 +108,7 @@
 				$.each(followupList[key], function(objKey, objValue){
 					displayFollowupList = displayFollowupList + "<td>"+objValue+"</td>";
 				});
-				displayFollowupList = displayFollowupList + "<td><a href='./EditEnquiry?enquiryId=${element.enquiryId}'>Edit</a></td>";
+				//displayFollowupList = displayFollowupList + "<td><a href='./EditEnquiry?enquiryId=${element.enquiryId}'>Edit</a></td>";
 				displayFollowupList = displayFollowupList + "</tr>";
       		} 
 			displayFollowupList = displayFollowupList + "</tbody>";

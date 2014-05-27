@@ -7,11 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="./EnquiryList" method="post">
-<input type="submit" value="List All Enquiries"/>
 
-
-</form>
-<a href="./EnquiryList">List All Enquiries</a>
+<a href="./EnquiryList">List All Enquiries</a><br>
+<a href="./addNewEnquiry.jsp">Add New Enquiry</a>
 </body>
 </html>

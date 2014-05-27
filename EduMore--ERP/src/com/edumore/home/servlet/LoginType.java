@@ -38,6 +38,7 @@ public class LoginType extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession httpSession = request.getSession();
 		httpSession.setAttribute("loginType", request.getParameter("loginType").toString());
+		request.setAttribute("loginType", request.getParameter("loginType").toString());
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		rd.forward(request, response);
 	}

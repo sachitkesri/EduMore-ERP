@@ -42,24 +42,10 @@ public class EnquiryListDAO {
 			//bean.setCurrentAddress((Address) rs.getObject("current_address"));
 			//bean.setPermanentAddress((Address) rs.getObject("permanent_address"));
 			bean.setEnquiryNumber(Long.parseLong(rs.getString(18)));
+			
 			enquiryBeans.add(bean);
 		}
-		/*
-		 * Iterator itr ; for(itr=datalist.iterator();itr.hasNext();){
-		 * out.println(itr); }
-		 * 
-		 * rs.close(); st.close(); // RequestDispatcher dis =
-		 * request.getRequestDispatcher("SearchRes.jsp"); //dis.forward(request,
-		 * response);
-		 * 
-		 * 
-		 * 
-		 * } catch(Exception e){ System.out.println("Exception is ;"+e); }
-		 * 
-		 * finally { out.close(); } request.setAttribute("data",datalist);
-		 * 
-		 * }
-		 */
+		
 		return enquiryBeans;
 	}
 

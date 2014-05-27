@@ -17,4 +17,8 @@ public class FollowupBusiness {
 		return FollowupDAO.listFollowup(enquiryId);
 	}
 
+	public static String checkEnquiryStatus(String enquiryId) throws SQLException, ClassNotFoundException {
+		return FollowupDAO.checkEnquiryStatus(enquiryId);
+	}
+
 }
