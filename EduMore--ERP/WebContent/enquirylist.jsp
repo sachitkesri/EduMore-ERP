@@ -11,7 +11,19 @@
 <script>
 	function addNewFollowUp(enquiryId){
 		$.blockUI({
-	        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>'
+	        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>',
+	        	overlayCSS : {
+					opacity : 0.5
+				},
+				css : {
+					border : 'none',
+					padding : '15px',
+					'-webkit-border-radius' : '10px',
+					'-moz-border-radius' : '10px',
+					opacity : 1,
+					
+				}
+			
 	    }); 
 	    $("#cancel").click(function(){
 	    	$.unblockUI();

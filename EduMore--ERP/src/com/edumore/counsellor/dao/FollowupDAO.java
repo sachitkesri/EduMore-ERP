@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.edumore.counsellor.bean.EnquiryBean;
 import com.edumore.counsellor.bean.FollowupBean;
 import com.edumore.databseconnection.EdumoreDBConnection;
 
@@ -16,9 +15,9 @@ public class FollowupDAO {
 
 	private static Connection con;
 	
-	public static boolean addFollowup(FollowupBean followupBean) throws SQLException, ClassNotFoundException {
+	public static boolean addFollowup(FollowupBean followupBean, String admissionStatus, String enquiryStatus) throws SQLException, ClassNotFoundException {
 		con = (Connection) EdumoreDBConnection.getDBConnection();
-		String sql = "insert into followup(date,remarks,enquiry_id) values(?,?,(SELECT enquiry_id FROM enquiry_details WHERE enquiry_id="
+		String sql = "insert into followup_details(date,remarks,enquiry_id) values(?,?,(SELECT enquiry_id FROM enquiry_details WHERE enquiry_id="
 				+ followupBean.getEnquiryId() + "))";
 		PreparedStatement statement = (PreparedStatement) con
 				.prepareStatement(sql);
@@ -28,10 +27,30 @@ public class FollowupDAO {
 		// statement.setInt(2, courseBean.getAdminId());
 		int updated = statement.executeUpdate();
 		if (updated == 1) {
-			return true;
+			if(enquiryStatus.equalsIgnoreCase("close")){
+				return FollowupDAO.updateEnquiryStatus(followupBean.getEnquiryId(),admissionStatus,enquiryStatus);
+			}else return true;
+			
+			
 		} else
 			return false;
 		
+	}
+
+	private static boolean updateEnquiryStatus(String enquiryId, String admissionStatus,
+			String enquiryStatus) throws SQLException, ClassNotFoundException {
+		con = (Connection) EdumoreDBConnection.getDBConnection();
+		String sql = "update enquiry_details SET enquiry_status = ?,admission_status = ? WHERE enquiry_id="+ enquiryId;
+		PreparedStatement statement = (PreparedStatement) con.prepareStatement(sql);
+		statement.setString(1, enquiryStatus);
+		statement.setString(2, admissionStatus);
+		int updated = statement.executeUpdate();
+		System.out.println(updated);
+		if (updated == 1) {
+			System.out.println(updated);
+			return true;
+		} else
+			return false;
 	}
 
 	public static List<FollowupBean> listFollowup(String enquiryId) throws SQLException, ClassNotFoundException {
