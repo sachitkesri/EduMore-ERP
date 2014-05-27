@@ -19,13 +19,13 @@ import com.edumore.counsellor.business.EnquiryBusiness;
  * Servlet implementation class NewEnquiry
  */
 @WebServlet("/NewEnquiry")
-public class NewEnquiry extends HttpServlet {
+public class Enquiry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewEnquiry() {
+    public Enquiry() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,6 +43,7 @@ public class NewEnquiry extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EnquiryBean enquiryBean = new EnquiryBean();
 		EnquiryBusiness enquiryBusiness = new EnquiryBusiness();
+		//int noOfEducations = Integer.parseInt(request.getParameter("educationNumber").toString());
 		
 		enquiryBean.setFirstName(request.getParameter("firstName"));
 		enquiryBean.setMiddleName(request.getParameter("middleName"));
@@ -79,10 +80,19 @@ public class NewEnquiry extends HttpServlet {
 		enquiryBean.setCurrentAddress(currentAddress);
 		enquiryBean.setPermanentAddress(permanentAddress);
 		
+		
 		enquiryBean.setEnquiryNumber(System.currentTimeMillis());
 		boolean isAdded = false;
 		try {
-			isAdded = enquiryBusiness.addNewEnquiry(enquiryBean);
+			if(request.getParameter("action").toString().equalsIgnoreCase("addNewEnquiry")){
+				isAdded = enquiryBusiness.addNewEnquiry(enquiryBean);
+				enquiryBean.setEnquiryNumber(System.currentTimeMillis());
+			}else if(request.getParameter("action").toString().equalsIgnoreCase("updateEnquiry")){
+				enquiryBean.setEnquiryNumber(Long.parseLong(request.getParameter("enquiryNumber").toString()));
+				enquiryBean.setEnquiry_id(Integer.parseInt(request.getParameter("enquiryId").toString()));
+				isAdded = enquiryBusiness.updateEnquiry(enquiryBean);
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

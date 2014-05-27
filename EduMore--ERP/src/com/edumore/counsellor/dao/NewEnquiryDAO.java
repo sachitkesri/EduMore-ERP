@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.taglibs.standard.lang.jstl.test.Bean1;
 
 import com.edumore.counsellor.bean.Address;
 import com.edumore.counsellor.bean.EnquiryBean;
@@ -49,6 +45,37 @@ public class NewEnquiryDAO {
 		} else
 			return false;
 	}
+	
+	public boolean updateEnquiry(EnquiryBean enquiryBean) throws SQLException, ClassNotFoundException {
+		con = (Connection) EdumoreDBConnection.getDBConnection();
+		//new NewEnquiryDAO().addNewAddress(enquiryBean, enquiryBean.getCurrentAddress(), "current");
+		//new NewEnquiryDAO().addNewAddress(enquiryBean, enquiryBean.getPermanentAddress(), "permanent");
+		int currentAddressId = new NewEnquiryDAO().fetchAddress(enquiryBean.getEnquiryNumber(), "current");
+		int permanentAddressId = new NewEnquiryDAO().fetchAddress(enquiryBean.getEnquiryNumber(), "permanent");
+		//'"+enquiryBean.getCurrentAddress().getHouseNumber()+"','"+enquiryBean.getCurrentAddress().getBuildingName()+"','"+enquiryBean.getCurrentAddress().getRoadName()+"','"+enquiryBean.getCurrentAddress().getAreaDetail()+"','"+enquiryBean.getCurrentAddress().getCity()+"','"+enquiryBean.getCurrentAddress().getState()+"','"+enquiryBean.getCurrentAddress().getPincode()+"'
+		 String sql = "update enquiry_details SET first_name = ?,middle_name = ?,last_name = ?,residence_number = ?,mobile_number = ?,email_id = ?,date_of_birth = ?,gender = ?,father_first_name =  ?,father_middle_name = ?,father_last_name = ?,father_mobile_number = ?,father_residence_number = ? where enquiry_id = " + enquiryBean.getEnquiry_id();
+		PreparedStatement statement = (PreparedStatement) con
+				.prepareStatement(sql);
+		statement.setString(1, enquiryBean.getFirstName());
+		statement.setString(2, enquiryBean.getMiddleName());
+		statement.setString(3, enquiryBean.getLastName());
+		statement.setString(4, enquiryBean.getResidenceNumber());
+		statement.setString(5, enquiryBean.getMobileNumber());
+		statement.setString(6, enquiryBean.getEmailId());
+		statement.setString(7, enquiryBean.getDateOfBirth());
+		statement.setString(8, enquiryBean.getGender());
+		statement.setString(9, enquiryBean.getFatherFirstName());
+		statement.setString(10, enquiryBean.getFatherMiddleName());
+		statement.setString(11, enquiryBean.getFatherLastName());
+		statement.setString(12, enquiryBean.getFatherMobileNumber());
+		statement.setString(13, enquiryBean.getFatherResidenceNumber());
+		int updated = statement.executeUpdate();
+		if (updated == 1) {
+			return true;
+		} else
+			return false;
+	}
+	
 	
 	public boolean addNewAddress(EnquiryBean enquiryBean, Address address, String addressType) throws SQLException, ClassNotFoundException {
 
