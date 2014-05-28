@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
-var educationNumber = 1;
+var educationNumber = 0;
 
 $(document).ready(function(){
 	$("#educationNumber").val(educationNumber);
@@ -23,6 +23,7 @@ $(document).ready(function(){
 <body>
 
 <form action="./NewEnquiry" method="post">
+<input type="hidden" value="addNewEnquiry" name="action"/>
 <label> First Name</label>
 <input type="text" name="firstName"></input>
 <label>Middle Name</label>
@@ -108,22 +109,22 @@ $(document).ready(function(){
 <tbody>
 <tr>
 	<td>
-		<input type="text" name="qualification_'+educationNumber+'"></input>
+		<input type="text" name="qualification_0"></input>
 	</td>
 	<td>
-		<input type="text" name="status_1"></input>
+		<input type="text" name="status_0"></input>
 	</td>
 	<td>
-		<input type="text" name="schoolName_1"></input>
+		<input type="text" name="schoolName_0"></input>
 	</td>
 	<td>
-		<input type="text" name="board_1"></input>
+		<input type="text" name="board_0"></input>
 	</td>
 	<td>
-		<input type="text" name="completedYear_1"></input>
+		<input type="text" name="completedYear_0"></input>
 	</td>
 	<td>
-		<input type="text" name="marksSecured_1"></input>
+		<input type="text" name="marksSecured_0"></input>
 	</td>
 
 	

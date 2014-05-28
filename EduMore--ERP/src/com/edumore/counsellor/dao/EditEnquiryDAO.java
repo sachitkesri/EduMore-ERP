@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.edumore.counsellor.bean.Address;
 import com.edumore.counsellor.bean.EnquiryBean;
@@ -36,6 +34,7 @@ public class EditEnquiryDAO {
 			bean.setGender(rs.getString(9));
 			bean.setFatherFirstName(rs.getString(10));
 			bean.setFatherMiddleName(rs.getString(11));
+			bean.setEnquiryNumber(rs.getLong(18));
 			
 		}
 		return bean;
