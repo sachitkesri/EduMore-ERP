@@ -2,6 +2,7 @@ package com.edumore.counsellor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.edumore.admin.AdminLogin;
 import com.edumore.counsellor.bean.Address;
+import com.edumore.counsellor.bean.EducationalQualification;
 import com.edumore.counsellor.bean.EnquiryBean;
 import com.edumore.counsellor.business.EnquiryBusiness;
 
@@ -43,8 +44,19 @@ public class Enquiry extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EnquiryBean enquiryBean = new EnquiryBean();
 		EnquiryBusiness enquiryBusiness = new EnquiryBusiness();
-		//int noOfEducations = Integer.parseInt(request.getParameter("educationNumber").toString());
-		
+		ArrayList<EducationalQualification> educationalQualifications = new ArrayList<EducationalQualification>();
+		int noOfEducations = Integer.parseInt(request.getParameter("educationNumber").toString());
+		for(int i = 0; i <= noOfEducations; i++){
+			EducationalQualification qualification = new EducationalQualification();
+			qualification.setQualification(request.getParameter("qualification_"+i).toString());
+			qualification.setCollege(request.getParameter("schoolName_"+i).toString());
+			qualification.setCompletedYear(request.getParameter("completedYear_"+i).toString());
+			qualification.setStatus(request.getParameter("status_"+i).toString());
+			qualification.setUnversity(request.getParameter("board_"+i).toString());
+			qualification.setGrade(request.getParameter("marksSecured_"+i).toString());
+			educationalQualifications.add(qualification);
+		}
+		enquiryBean.setEducationalQualifications(educationalQualifications);
 		enquiryBean.setFirstName(request.getParameter("firstName"));
 		enquiryBean.setMiddleName(request.getParameter("middleName"));
 		enquiryBean.setLastName(request.getParameter("lastName"));
@@ -61,18 +73,18 @@ public class Enquiry extends HttpServlet {
 		
 		Address currentAddress = new Address();
 		currentAddress.setHouseNumber(request.getParameter("currentHouseNumber"));
-		currentAddress.setBuildingName(request.getParameter("currentBuildingName"));
-		currentAddress.setRoadName(request.getParameter("currentRoadName"));
-		currentAddress.setAreaDetail(request.getParameter("currentAreaDetail"));
+		currentAddress.setBuildingName(request.getParameter("currentBuilding"));
+		currentAddress.setRoadName(request.getParameter("currentRoad"));
+		currentAddress.setAreaDetail(request.getParameter("currentArea"));
 		currentAddress.setCity(request.getParameter("currentCity"));
 		currentAddress.setState(request.getParameter("currentState"));
 		currentAddress.setPincode(request.getParameter("currentPincode"));
 		
 		Address permanentAddress = new Address();
 		permanentAddress.setHouseNumber(request.getParameter("permanentHouseNumber"));
-		permanentAddress.setBuildingName(request.getParameter("permanentBuildingName"));
-		permanentAddress.setRoadName(request.getParameter("permanentRoadName"));
-		permanentAddress.setAreaDetail(request.getParameter("permanentAreaDetail"));
+		permanentAddress.setBuildingName(request.getParameter("permanentBuilding"));
+		permanentAddress.setRoadName(request.getParameter("permanentRoad"));
+		permanentAddress.setAreaDetail(request.getParameter("permanentrArea"));
 		permanentAddress.setCity(request.getParameter("permanentCity"));
 		permanentAddress.setState(request.getParameter("permanentState"));
 		permanentAddress.setPincode(request.getParameter("permanentPincode"));
@@ -80,11 +92,10 @@ public class Enquiry extends HttpServlet {
 		enquiryBean.setCurrentAddress(currentAddress);
 		enquiryBean.setPermanentAddress(permanentAddress);
 		
-		
-		enquiryBean.setEnquiryNumber(System.currentTimeMillis());
 		boolean isAdded = false;
 		try {
 			if(request.getParameter("action").toString().equalsIgnoreCase("addNewEnquiry")){
+				enquiryBean.setEnquiryNumber(System.currentTimeMillis());
 				isAdded = enquiryBusiness.addNewEnquiry(enquiryBean);
 				enquiryBean.setEnquiryNumber(System.currentTimeMillis());
 			}else if(request.getParameter("action").toString().equalsIgnoreCase("updateEnquiry")){

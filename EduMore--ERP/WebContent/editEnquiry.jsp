@@ -7,6 +7,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+var educationNumber = 0;
+
+$(document).ready(function(){
+	$("#educationNumber").val(educationNumber);
+    $("#addNewRow").click(function(){
+    	educationNumber++;
+        $("#educationDetails").append('<tr><td><input type="text" name="qualification_'+educationNumber+'"></input></td><td><input type="text" name="status_'+educationNumber+'"></input></td><td><input type="text" name="schoolName_'+educationNumber+'"></input></td><td><input type="text" name="board_'+educationNumber+'"></input></td><td><input type="text" name="completedYear_'+educationNumber+'"></input></td><td><input type="text" name="marksSecured_'+educationNumber+'"></input></td></tr>');
+        $("#educationNumber").val(educationNumber);
+        
+    });
+});
+</script>
 </head>
 <body>
 <% EnquiryBean bean = (EnquiryBean)request.getAttribute("enquiry");%>
@@ -59,7 +73,7 @@
 <label>Road/Street/ Post Office</label>
 <input type="text" name="permanentRoad" value=<%= bean.getPermanentAddress().getRoadName()  %>></input><br>
 <label>Area Detail</label>
-<input type="text" name="permanentrArea" value=<%= bean.getPermanentAddress().getAreaDetail()  %>></input><br>
+<input type="text" name="permanentArea" value=<%= bean.getPermanentAddress().getAreaDetail()  %>></input><br>
 <label>District/Town/City</label>
 <input type="text" name="permanentCity" value=<%= bean.getPermanentAddress().getCity()  %>></input>
 <label>State</label>
@@ -99,28 +113,28 @@
 <tbody>
 <tr>
 	<td>
-		<input type="text" name="qualification"></input>
+		<input type="text" name="qualification_0"></input>
 	</td>
 	<td>
-		<input type="text" name="status"></input>
+		<input type="text" name="status_0"></input>
 	</td>
 	<td>
-		<input type="text" name="schoolName"></input>
+		<input type="text" name="schoolName_0"></input>
 	</td>
 	<td>
-		<input type="text" name="board"></input>
+		<input type="text" name="board_0"></input>
 	</td>
 	<td>
-		<input type="text" name="completedYear"></input>
+		<input type="text" name="completedYear_0"></input>
 	</td>
 	<td>
-		<input type="text" name="marksSecured"></input>
+		<input type="text" name="marksSecured_0"></input>
 	</td>
 
 	
 </tr>
 </tbody>
-</table>
+</table><a href="javascript:void(0);" id="addNewRow">Add New row</a><input type="hidden" id="educationNumber" name="educationNumber" value=educationNumber></input>
 <br>
 <label>Details of IT Program done</label><br>
 <label>Program</label>

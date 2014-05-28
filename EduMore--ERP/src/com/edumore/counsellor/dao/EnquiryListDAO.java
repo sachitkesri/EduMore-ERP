@@ -39,14 +39,36 @@ public class EnquiryListDAO {
 			bean.setFatherLastName(rs.getString(12));
 			bean.setFatherResidenceNumber(rs.getString(13));
 			bean.setFatherMobileNumber(rs.getString(15));
-			//bean.setCurrentAddress((Address) rs.getObject("current_address"));
-			//bean.setPermanentAddress((Address) rs.getObject("permanent_address"));
+			bean.setCurrentAddress(fetchAddress(bean.getEnquiry_id(), "current"));
+			bean.setPermanentAddress(fetchAddress(bean.getEnquiry_id(), "current"));
 			bean.setEnquiryNumber(Long.parseLong(rs.getString(18)));
 			
 			enquiryBeans.add(bean);
 		}
 		
 		return enquiryBeans;
+	}
+	
+	public Address fetchAddress(long enquiryNumber, String addressType) throws SQLException, ClassNotFoundException{ 
+		String query = "SELECT * FROM address_details where enquiry_number = " + enquiryNumber + " AND address_type ='" + addressType +"'";  
+		Statement st = null;
+		Address address = new Address();
+		st = con.createStatement();
+		ResultSet rs =  st.executeQuery(query);
+		while(rs.next()){
+			address.setAddressId(rs.getInt(1));
+			address.setHouseNumber(rs.getString(2));
+			address.setBuildingName(rs.getString(3));
+			address.setRoadName(rs.getString(4));
+			address.setAreaDetail(rs.getString(5));
+			address.setCity(rs.getString(6));
+			address.setState(rs.getString(7));
+			address.setPincode(rs.getString(9));
+			address.setEnquiryNumber(rs.getLong(10));
+			address.setAddressType(rs.getString(11));
+		}
+		return address;
+		
 	}
 
 }
