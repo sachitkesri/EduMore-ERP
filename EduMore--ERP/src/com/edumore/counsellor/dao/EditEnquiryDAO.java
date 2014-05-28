@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.edumore.counsellor.bean.Address;
+import com.edumore.counsellor.bean.EducationalQualification;
 import com.edumore.counsellor.bean.EnquiryBean;
 import com.edumore.databseconnection.EdumoreDBConnection;
 
@@ -16,12 +18,14 @@ public class EditEnquiryDAO {
 		String query = "SELECT * FROM enquiry_details where enquiry_number = '"+enquiryId+"'";  
 		Statement st = null;
 		st = con.createStatement();
-		Address currentAddress = new EditEnquiryDAO().getAddress(enquiryId, "current");
-		Address permanentAddress = new EditEnquiryDAO().getAddress(enquiryId, "permanent");
+		Address currentAddress = getAddress(enquiryId, "current");
+		Address permanentAddress = getAddress(enquiryId, "permanent");
+		ArrayList<EducationalQualification> educationalQualifications = getEducationalQualification(enquiryId);
 		ResultSet rs =  st.executeQuery(query);
 		EnquiryBean bean = new EnquiryBean();
 		bean.setCurrentAddress(currentAddress);
 		bean.setPermanentAddress(permanentAddress);
+		bean.setEducationalQualifications(educationalQualifications);
 		while(rs.next()){ 
 			bean.setEnquiry_id(rs.getInt(1));
 			bean.setFirstName(rs.getString(2));
@@ -40,6 +44,32 @@ public class EditEnquiryDAO {
 		return bean;
 	}
 	
+	private ArrayList<EducationalQualification> getEducationalQualification(
+			String enquiryId) throws SQLException, ClassNotFoundException {
+		con = (Connection) EdumoreDBConnection.getDBConnection();
+		String query = "SELECT * FROM education_details where enquiry_number='"+enquiryId+"'" ;  
+		Statement st = null;
+		st = con.createStatement();
+		ArrayList<EducationalQualification> educationalQualifications = new ArrayList<EducationalQualification>();
+		
+		ResultSet rs =  st.executeQuery(query);
+		
+		while(rs.next()){ 
+			EducationalQualification bean = new EducationalQualification();
+			bean.setEducationId(rs.getInt(1));
+			bean.setQualification(rs.getString(2));
+			bean.setCollege(rs.getString(3)); 
+			bean.setStatus(rs.getString(4));
+			bean.setUnversity(rs.getString(5));
+			bean.setCompletedYear(rs.getString(6));
+			bean.setGrade(rs.getString(7));
+			bean.setEnquiryNumber(Long.parseLong(rs.getString(8)));
+			educationalQualifications.add(bean);
+		}
+		return educationalQualifications;
+	
+	}
+
 	private Address getAddress(String enquiryId, String addressType) throws SQLException, ClassNotFoundException {
 		con = (Connection) EdumoreDBConnection.getDBConnection();
 		String query = "SELECT * FROM address_details where enquiry_number = '"+enquiryId+"' AND address_type='" + addressType + "'" ;  

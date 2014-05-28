@@ -12,9 +12,12 @@
 var educationNumber = 0;
 
 $(document).ready(function(){
-	$("#educationNumber").val(educationNumber);
+	
     $("#addNewRow").click(function(){
+    	educationNumber = $("#educationNumber").val();
     	educationNumber++;
+    	$("#educationNumber").val(educationNumber);
+    	console.log(educationNumber);
         $("#educationDetails").append('<tr><td><input type="text" name="qualification_'+educationNumber+'"></input></td><td><input type="text" name="status_'+educationNumber+'"></input></td><td><input type="text" name="schoolName_'+educationNumber+'"></input></td><td><input type="text" name="board_'+educationNumber+'"></input></td><td><input type="text" name="completedYear_'+educationNumber+'"></input></td><td><input type="text" name="marksSecured_'+educationNumber+'"></input></td></tr>');
         $("#educationNumber").val(educationNumber);
         
@@ -110,31 +113,33 @@ $(document).ready(function(){
 </tr>
 </thead>
 
-<tbody>
+<tbody id="educationDetails">
+<% for(int i = 0; i < bean.getEducationalQualifications().size(); i++ ){ %>
 <tr>
 	<td>
-		<input type="text" name="qualification_0"></input>
+		<input type="text" name="qualification_<%= i %>" value="<%= bean.getEducationalQualifications().get(i).getQualification() %>" ></input>
 	</td>
 	<td>
-		<input type="text" name="status_0"></input>
+		<input type="text" name="status_<%= i %>" value="<%= bean.getEducationalQualifications().get(i).getStatus() %>"></input>
 	</td>
 	<td>
-		<input type="text" name="schoolName_0"></input>
+		<input type="text" name="schoolName_<%= i %>" value="<%= bean.getEducationalQualifications().get(i).getCollege() %>"></input>
 	</td>
 	<td>
-		<input type="text" name="board_0"></input>
+		<input type="text" name="board_<%= i %>" value="<%= bean.getEducationalQualifications().get(i).getUnversity() %>"></input>
 	</td>
 	<td>
-		<input type="text" name="completedYear_0"></input>
+		<input type="text" name="completedYear_<%= i %>" value="<%= bean.getEducationalQualifications().get(i).getCompletedYear() %>"></input>
 	</td>
 	<td>
-		<input type="text" name="marksSecured_0"></input>
+		<input type="text" name="marksSecured_<%= i %>" value="<%= bean.getEducationalQualifications().get(i).getGrade() %>"></input>
 	</td>
 
 	
 </tr>
+<% } %>
 </tbody>
-</table><a href="javascript:void(0);" id="addNewRow">Add New row</a><input type="hidden" id="educationNumber" name="educationNumber" value=educationNumber></input>
+</table><a href="javascript:void(0);" id="addNewRow">Add New row</a><input type="text" id="educationNumber" name="educationNumber" value=<%=bean.getEducationalQualifications().size() - 1 %>></input>
 <br>
 <label>Details of IT Program done</label><br>
 <label>Program</label>

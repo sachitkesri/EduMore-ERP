@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.edumore.counsellor.bean.Address;
+import com.edumore.counsellor.bean.EducationalQualification;
 import com.edumore.counsellor.bean.EnquiryBean;
 import com.edumore.databseconnection.EdumoreDBConnection;
 
@@ -49,14 +51,29 @@ public class NewEnquiryDAO {
 			return false;
 	}
 	
-	private void addEducationQualification(EnquiryBean enquiryBean) {
-		// TODO Auto-generated method stub
+	private void addEducationQualification(EnquiryBean enquiryBean) throws SQLException {
+		ArrayList<EducationalQualification> educationalQualifications = enquiryBean.getEducationalQualifications();
+		String sql = "insert into education_details(qualification,college,status,university,completed_year,grade,enquiry_number) values(?,?,?,?,?,?,?)";
+		PreparedStatement statement = (PreparedStatement) con.prepareStatement(sql);
+		
+		for(EducationalQualification educationalQualification : educationalQualifications){
+			statement.setString(1, educationalQualification.getQualification());
+			statement.setString(2, educationalQualification.getCollege());
+			statement.setString(3, educationalQualification.getStatus());
+			statement.setString(4, educationalQualification.getUnversity());
+			statement.setString(5, educationalQualification.getCompletedYear());
+			statement.setString(6, educationalQualification.getGrade());
+			statement.setLong(7, enquiryBean.getEnquiryNumber());
+			statement.executeUpdate();
+		}
+		
 		
 	}
 
 	public boolean updateEnquiry(EnquiryBean enquiryBean) throws SQLException, ClassNotFoundException {
 		con = (Connection) EdumoreDBConnection.getDBConnection();
 		con.setAutoCommit(false);
+		updaeEducation(enquiryBean);
 		updateAddress(enquiryBean, enquiryBean.getCurrentAddress(), "current");
 		updateAddress(enquiryBean, enquiryBean.getPermanentAddress(), "permanent");
 		String sql = "update enquiry_details SET first_name = ?,middle_name = ?,last_name = ?,residence_number = ?,mobile_number = ?,email_id = ?,date_of_birth = ?,gender = ?,father_first_name =  ?,father_middle_name = ?,father_last_name = ?,father_mobile_number = ?,father_residence_number = ? where enquiry_id = " + enquiryBean.getEnquiry_id();
@@ -83,9 +100,26 @@ public class NewEnquiryDAO {
 	}
 	
 	
+	private void updaeEducation(EnquiryBean enquiryBean) throws SQLException {
+		String sql = "UPDATE education_details SET qualification = ?,college = ?,status = ?,university = ?,completed_year = ?,grade = ? WHERE enquiry_number='" + enquiryBean.getEnquiryNumber() + "'" ;
+		ArrayList<EducationalQualification> educationalQualifications = enquiryBean.getEducationalQualifications();
+		for(EducationalQualification educationQualification : educationalQualifications){
+			System.out.println(educationQualification.getQualification());
+			PreparedStatement statement = (PreparedStatement) con.prepareStatement(sql);
+			
+			statement.setString(1, educationQualification.getQualification());
+			statement.setString(2, educationQualification.getCollege());
+			statement.setString(3, educationQualification.getStatus());
+			statement.setString(4, educationQualification.getUnversity());
+			statement.setString(5, educationQualification.getCompletedYear());
+			statement.setString(6, educationQualification.getGrade());
+			statement.executeUpdate();
+		}
+		
+		
+	}
+
 	private void updateAddress(EnquiryBean enquiryBean, Address address, String addressType) throws SQLException {
-		System.out.println("-----");
-		System.out.println(enquiryBean.getEnquiryNumber());
 		String sql = "UPDATE address_details SET house_number = ?,building_name = ?,street = ?,area = ?,city = ?,state = ?,pincode = ? WHERE enquiry_number='" + enquiryBean.getEnquiryNumber() + "' AND address_type='" +addressType +"'" ;
 		PreparedStatement statement = (PreparedStatement) con.prepareStatement(sql);
 		statement.setString(1, address.getHouseNumber());

@@ -2,12 +2,21 @@ package com.edumore.counsellor.bean;
 
 public class EducationalQualification {
 	
+	private int educationId;
 	private String qualification;
 	private String status;
 	private String college;
 	private String unversity;
 	private String completedYear;
 	private String grade;
+	private long enquiryNumber;
+	
+	public int getEducationId() {
+		return educationId;
+	}
+	public void setEducationId(int educationId) {
+		this.educationId = educationId;
+	}
 	public String getQualification() {
 		return qualification;
 	}
@@ -43,6 +52,12 @@ public class EducationalQualification {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+	public long getEnquiryNumber() {
+		return enquiryNumber;
+	}
+	public void setEnquiryNumber(long enquiryNumber) {
+		this.enquiryNumber = enquiryNumber;
 	}
 	
 	

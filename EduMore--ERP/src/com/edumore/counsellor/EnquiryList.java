@@ -41,12 +41,10 @@ public class EnquiryList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("ServletCalled");
 		List<EnquiryBean> enquiryList = new ArrayList<EnquiryBean>();
 		try {
 			enquiryList = new EnquiryBusiness().listAllEnquiries();
 			request.setAttribute("list", enquiryList);
-			System.out.println(enquiryList.get(1).getEnquiryNumber());
 			RequestDispatcher dis = request.getRequestDispatcher("enquirylist.jsp");  
 		    dis.forward(request, response); 
 		    

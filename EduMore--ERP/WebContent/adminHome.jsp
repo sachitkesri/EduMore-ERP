@@ -8,5 +8,10 @@
 </head>
 <body>
 <h1> Admin Home</h1>
+<a href="./newuser.jsp">Add New User</a>
+<a href="#">Add Course</a>
+<a href="#">Add Batch</a>
+<a href="#">List All User</a>
+<a href="#">Delete User</a>
 </body>
 </html>

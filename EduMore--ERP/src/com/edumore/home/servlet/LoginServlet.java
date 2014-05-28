@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 			httpSession.setAttribute("userLoginId", userLoginId);
 			RequestDispatcher dispatcher = null;
 			if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("admin")){
-				dispatcher = request.getRequestDispatcher("adminhome.jsp");
+				dispatcher = request.getRequestDispatcher("adminHome.jsp");
 			}else if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("counsellor")){
 				dispatcher = request.getRequestDispatcher("counsellorhome.jsp");
 			}
