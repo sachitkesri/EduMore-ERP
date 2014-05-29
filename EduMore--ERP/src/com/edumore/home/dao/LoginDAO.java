@@ -13,9 +13,9 @@ public class LoginDAO {
 
 	public static int verifyLogin(String username, String password, String loginType) throws SQLException, ClassNotFoundException {
 		con = (Connection) EdumoreDBConnection.getDBConnection();
-		String query = "SELECT * FROM user_login_details where username='"+username+"' AND password='"+password+"' AND role='"+ loginType +"'";  
+		String query = "SELECT * FROM user_details where username='"+username+"' AND password='"+password+"' AND role='"+ loginType +"'";  
 		Statement st = null;
-		int userLoginId = 0; 
+		int userLoginId = -1; 
 		st = con.createStatement();
 		ResultSet rs =  st.executeQuery(query);
 		while(rs.next()){

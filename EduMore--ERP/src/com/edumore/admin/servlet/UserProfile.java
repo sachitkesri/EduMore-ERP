@@ -58,11 +58,22 @@ public class UserProfile extends HttpServlet {
 			boolean isSaved = false;
 			if(request.getParameter("action").toString().equalsIgnoreCase("addNewUser")){
 				isSaved = new UserProfileBusiness().addNewUser(userBean);
+				if(isSaved){
+					request.setAttribute("userAdditionStatusMsgColor", "green");
+					request.setAttribute("userAdditionStatusMessage", "New user added successfully");
+					RequestDispatcher rd = request.getRequestDispatcher("newuser.jsp");
+					rd.forward(request, response);
+				}
 			}
 			
 		} catch (ParseException e) {
 			request.setAttribute("userAdditionStatusMsgColor", "red");
-			request.setAttribute("userAdditionStatusMessage", "Please enter date in a format MM/DD/YYYY");
+			request.setAttribute("userAdditionStatusMessage", "Please enter date in a format YYYY-MM-DD");
+			RequestDispatcher rd = request.getRequestDispatcher("newuser.jsp");
+			rd.forward(request, response);
+		}catch (Exception e) {
+			request.setAttribute("userAdditionStatusMsgColor", "red");
+			request.setAttribute("userAdditionStatusMessage", "Some Error occured while saving");
 			RequestDispatcher rd = request.getRequestDispatcher("newuser.jsp");
 			rd.forward(request, response);
 		}

@@ -10,11 +10,10 @@
 <script src="js/jquery.blockUI.js"></script>
 <script>
 	function addNewFollowUp(enquiryId){
-		console.log("Here.");
 		$.get("./EnquiryStatus?enquiryId=" +enquiryId,function(response){
 			if(response === "open"){
 				$.blockUI({
-		        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>',
+		        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="close"></input></form>',
 		        	overlayCSS : {
 						opacity : 0.5 
 					},
@@ -24,17 +23,14 @@
 						'-webkit-border-radius' : '10px',
 						'-moz-border-radius' : '10px',
 						opacity : 1,
-						
 					}
-				
-		   		}); 
+				}); 
 			    $("#cancel").click(function(){
 			    	$.unblockUI();
 				});
-				
 			}else if(response === "close"){
 				$.blockUI({
-		        	message: 'This enquiry has been closed. <a id="viewFollowup" href="javascript:viewFollowUp('+enquiryId+')">View Follow Up</a>',
+		        	message: 'This enquiry has been closed. <a id="viewFollowup" href="javascript:viewFollowUp('+enquiryId+')">View Follow Up</a><br><input id="cancel" type="reset" value="close">',
 		        	overlayCSS : {
 						opacity : 0.5 
 					},
@@ -44,59 +40,13 @@
 						'-webkit-border-radius' : '10px',
 						'-moz-border-radius' : '10px',
 						opacity : 1,
-						
 					}
-				
-		   		}); 
-				
+				}); 
+				$("#cancel").click(function(){
+					$.unblockUI();
+				});
 			}
 		});
-		
-		
-		/*  function(result) {
-			
-			console.log(result);
-			if(result === "open"){
-				$.blockUI({
-		        	message: '<form action="./Followup" method="POST"><input type="hidden" value="'+ enquiryId +'"name="enquiryId"><label> Date</label><input type="text" name="date"></input><br>	<label>Remarks</label><input type="text" name="remarks"></input><br><input type="checkbox" name="enquirystatus" value="close">Close This Enquiry<br><input type="radio" name="admissionstatus" checked="checked" value="hold">hold<br><input type="radio" name="admissionstatus" value="intereted">Interested<br><input type="radio" name="admissionstatus" value="notinterested">Not Interested<br><input type="submit"></input><input id="cancel" type="reset" value="cancel"></input></form>',
-		        	overlayCSS : {
-						opacity : 0.5 
-					},
-					css : {
-						border : 'none',
-						padding : '15px',
-						'-webkit-border-radius' : '10px',
-						'-moz-border-radius' : '10px',
-						opacity : 1,
-						
-					}
-				
-		   		}); 
-			    $("#cancel").click(function(){
-			    	$.unblockUI();
-				});
-			}else if(result === "close"){
-				$.blockUI({
-		        	message: 'This enquiry has been closed. <a id="viewFollowup" href="javascript:viewFollowUp('+enquiryId+')">View Follow Up</a>',
-		        	overlayCSS : {
-						opacity : 0.5 
-					},
-					css : {
-						border : 'none',
-						padding : '15px',
-						'-webkit-border-radius' : '10px',
-						'-moz-border-radius' : '10px',
-						opacity : 1,
-						
-					}
-				
-		   		}); 
-			}
-		},function(error){
-			console.log(error);
-		}); */
-		
-	    
 	};
 	
 	function viewFollowUp(enquiryId){
@@ -108,14 +58,16 @@
 				$.each(followupList[key], function(objKey, objValue){
 					displayFollowupList = displayFollowupList + "<td>"+objValue+"</td>";
 				});
-				//displayFollowupList = displayFollowupList + "<td><a href='./EditEnquiry?enquiryId=${element.enquiryId}'>Edit</a></td>";
 				displayFollowupList = displayFollowupList + "</tr>";
       		} 
 			displayFollowupList = displayFollowupList + "</tbody>";
 			
 			$.blockUI({
-	        		message: "<table><thead><tr><td><p>S.No</p></td><td><p>Date</p></td><td><p>Remarks</p></td></tr></thead>"+displayFollowupList+"</table>"
+	        		message: "<table><thead><tr><td><p>S.No</p></td><td><p>Date</p></td><td><p>Remarks</p></td></tr></thead>"+displayFollowupList+"</table><br><input id='cancel' type='reset' value='close'>"
 	    	}); 
+			$("#cancel").click(function(){
+				$.unblockUI();
+			});
 		}, function(error) {
 			console.log(error);
 		});
@@ -124,6 +76,7 @@
 </script>
 </head>
 <body>
+<label style="color:${follwupStatusMsgColor}">${follwupStatusMessage}</label>
 <form action="./EditEnquiry" method="GET">
 <table>
 <thead>

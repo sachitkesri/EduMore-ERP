@@ -1,10 +1,10 @@
 package com.edumore.counsellor.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,8 +48,11 @@ public class Followup extends HttpServlet {
 		FollowupBean followupBean = new FollowupBean();
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		String admissionStatus = request.getParameter("admissionstatus");
+		System.out.println("request.getParameter('enquirystatus') : " + request.getParameter("enquirystatus"));
 		if (request.getParameter("enquirystatus") != null) {
 			enquiryStatus = request.getParameter("enquirystatus");
+		}else{
+			enquiryStatus = "open";
 		}
 		System.out.println(enquiryStatus);
 		try {
@@ -61,15 +64,24 @@ public class Followup extends HttpServlet {
 					.toString());
 			boolean isSaved = FollowupBusiness.addFollowup(followupBean,
 					admissionStatus, enquiryStatus);
+			System.out.println(isSaved);
 			if (isSaved) {
-				request.setAttribute("follwupStatus", "followup added.");
+				request.setAttribute("follwupStatusMsgColor", "green");
+				request.setAttribute("follwupStatusMessage", "followup added.");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EnquiryList");
+				dispatcher.forward(request, response);
 			} else {
-				request.setAttribute("follwupStatus",
-						"Some error occured in adding followup. Please try again.");
+				request.setAttribute("follwupStatusMsgColor", "red");
+				request.setAttribute("follwupStatusMessage", "Some error occured in adding followup. Please try again.");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EnquiryList");
+				dispatcher.forward(request, response);
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			request.setAttribute("follwupStatusMsgColor", "red");
+			request.setAttribute("follwupStatusMessage", "Some error occured in adding followup. Please try again.");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/EnquiryList");
+			dispatcher.forward(request, response);
 			e.printStackTrace();
 		}
 

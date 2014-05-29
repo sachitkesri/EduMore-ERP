@@ -11,15 +11,20 @@
 <input type="hidden" value="addNewUser" name="action"/>
 <label>Name</label>
 <input type="text" name="name" value=""/><br>
-<label>Role</label>
-<input type="text" name="role" value=""/><br>
+<label>department</label>
+<select name="role">
+  <option value="admin">Admin</option>
+  <option value="counsellor">Counsellor</option>
+  <option value="academic">Academic</option>
+  <option value="accounts">Accounts</option>
+</select><br>
 <label>E-mail</label>
 <input type="text" name="email" value=""/><br>
 <label>Contact Number</label>
 <input type="text" name="contactNumber" value=""/><br>
 
 <label>Date of joining</label>
-<input type="text" name="dateOfJoining" value=""/><label>(MM/DD/YYYY)</label><br>
+<input type="text" name="dateOfJoining" value=""/><label>(YYYY-MM-DD)</label><br>
 <label>Address</label>
 <textarea name="address"></textarea><br>
 
@@ -29,6 +34,6 @@
 <input type="text" name="password" value=""/><br>
 <input type="submit" value="Add User" >
 </form>
-<label color="${userAdditionStatusMsgColor}">${userAdditionStatusMsgColor}</label>
+<label style="color:${userAdditionStatusMsgColor}">${userAdditionStatusMessage}</label>
 </body>
 </html>
