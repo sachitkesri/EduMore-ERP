@@ -16,5 +16,6 @@
 <input type="submit" value= "Login"></input>
 
 </form>
+<label style="color:${loginStatusMsgColor}">${loginStatusMessage}</label>
 </body>
 </html>

@@ -16,36 +16,33 @@ public class FollowupDAO {
 	private static Connection con;
 	
 	public static boolean addFollowup(FollowupBean followupBean, String admissionStatus, String enquiryStatus) throws SQLException, ClassNotFoundException {
-		con = (Connection) EdumoreDBConnection.getDBConnection();
-		String sql = "insert into followup_details(date,remarks,enquiry_id) values(?,?,(SELECT enquiry_id FROM enquiry_details WHERE enquiry_id="
-				+ followupBean.getEnquiryId() + "))";
-		PreparedStatement statement = (PreparedStatement) con
-				.prepareStatement(sql);
-		statement.setDate(1, followupBean.getDate());
-		statement.setString(2, followupBean.getRemarks());
-		
-		// statement.setInt(2, courseBean.getAdminId());
-		int updated = statement.executeUpdate();
-		if (updated == 1) {
-			if(enquiryStatus.equalsIgnoreCase("close")){
-				return FollowupDAO.updateEnquiryStatus(followupBean.getEnquiryId(),admissionStatus,enquiryStatus);
-			}else return true;
-			
-			
-		} else
+		boolean isFollowUpAdded = false;
+		try{
+			con = (Connection) EdumoreDBConnection.getDBConnection();
+			con.setAutoCommit(false);
+			String sql = "insert into followup_details(date,remarks,enquiry_id) values(?,?,(SELECT enquiry_id FROM enquiry_details WHERE enquiry_id="
+					+ followupBean.getEnquiryId() + "))";
+			PreparedStatement statement = (PreparedStatement) con
+					.prepareStatement(sql);
+			statement.setDate(1, followupBean.getDate());
+			statement.setString(2, followupBean.getRemarks());
+			statement.executeUpdate();
+			isFollowUpAdded = FollowupDAO.updateEnquiryStatus(followupBean.getEnquiryId(),admissionStatus,enquiryStatus);
+			con.commit();
+			return isFollowUpAdded;
+		}catch (Exception e) {
+			con.rollback();
 			return false;
+		}
 		
 	}
 
-	private static boolean updateEnquiryStatus(String enquiryId, String admissionStatus,
-			String enquiryStatus) throws SQLException, ClassNotFoundException {
-		con = (Connection) EdumoreDBConnection.getDBConnection();
+	private static boolean updateEnquiryStatus(String enquiryId, String admissionStatus,String enquiryStatus) throws SQLException, ClassNotFoundException {
 		String sql = "update enquiry_details SET enquiry_status = ?,admission_status = ? WHERE enquiry_id="+ enquiryId;
 		PreparedStatement statement = (PreparedStatement) con.prepareStatement(sql);
 		statement.setString(1, enquiryStatus);
 		statement.setString(2, admissionStatus);
 		int updated = statement.executeUpdate();
-		System.out.println(updated);
 		if (updated == 1) {
 			System.out.println(updated);
 			return true;
@@ -83,7 +80,6 @@ public class FollowupDAO {
 		while (rs.next()) {
 			enquiryStatus = rs.getString(1);
 		}
-		System.out.println("Here.." + enquiryStatus);
 		return enquiryStatus;
 	}
 	

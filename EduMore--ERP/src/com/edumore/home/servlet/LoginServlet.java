@@ -54,15 +54,21 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(userLoginId != 0){
+		if(userLoginId != -1){
 			httpSession.setAttribute("userLoginId", userLoginId);
 			RequestDispatcher dispatcher = null;
 			if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("admin")){
 				dispatcher = request.getRequestDispatcher("adminHome.jsp");
 			}else if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("counsellor")){
 				dispatcher = request.getRequestDispatcher("counsellorhome.jsp");
+			}else if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("academic")){
+				dispatcher = request.getRequestDispatcher("academichome.jsp");
 			}
-			
+			dispatcher.forward(request, response);
+		}else{
+			request.setAttribute("loginStatusMsgColor", "red");
+			request.setAttribute("loginStatusMessage", "username or password is incorrect!");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
