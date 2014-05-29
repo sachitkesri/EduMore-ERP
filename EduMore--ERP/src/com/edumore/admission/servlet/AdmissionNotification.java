@@ -1,12 +1,16 @@
 package com.edumore.admission.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.edumore.admission.business.AdmissionNotificationDBusiness;
 
 /**
  * Servlet implementation class AdmissionNotification
@@ -34,7 +38,17 @@ public class AdmissionNotification extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		try {
+			ArrayList<String> enquiryNumbers = new AdmissionNotificationDBusiness().fetchRegistrations();
+			request.setAttribute("enquiryNumbersList", enquiryNumbers);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -7,6 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="./register" method="post">
+<label>Enquiry Number</label>
+<input type="text" name="enquiryNumber" value="<%= request.getParameter("enquiryNumber") %>"><br>
 
+<label>Amount Payble(in Rs)</label>
+<input type="text" name="amount">
+<br>
+<label>email</label>
+<input type="text" name="email">
+<br>
+<input type="submit" value="Register">
+
+
+
+</form>
+<label style="color:${registrationStatusMsgColor}">${registrationStatusMessage}</label>
 </body>
 </html>
