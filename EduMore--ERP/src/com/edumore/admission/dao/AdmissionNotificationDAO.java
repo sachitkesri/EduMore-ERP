@@ -13,7 +13,7 @@ public class AdmissionNotificationDAO {
 	private Connection con;
 	public ArrayList<String> fetchRegistrations() throws SQLException, ClassNotFoundException {
 		ArrayList<String> enquiryNumbers = new ArrayList<String>();
-		String query = "SELECT enquiry_number FROM enquiry_details";
+		String query = "SELECT enquiry_number FROM enquiry_details where admission_status='registered'";
 		con = EdumoreDBConnection.getDBConnection();
 		Statement st = null;
 		st = con.createStatement();

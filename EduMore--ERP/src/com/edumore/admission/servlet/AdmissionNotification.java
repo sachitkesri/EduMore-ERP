@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.edumore.admission.business.AdmissionNotificationDBusiness;
 
 /**
@@ -31,7 +34,7 @@ public class AdmissionNotification extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -40,7 +43,15 @@ public class AdmissionNotification extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ArrayList<String> enquiryNumbers = new AdmissionNotificationDBusiness().fetchRegistrations();
-			request.setAttribute("enquiryNumbersList", enquiryNumbers);
+			System.out.println(enquiryNumbers.size());
+			JSONArray enquiryNumbersListJSON = new JSONArray();
+			JSONObject responseJSONObject = new JSONObject();
+			for(String enquiryNumber : enquiryNumbers){
+				System.out.println(enquiryNumber);
+				enquiryNumbersListJSON.add(enquiryNumber);
+			}
+			responseJSONObject.put("enquiryNumbersList", enquiryNumbersListJSON);
+			response.getWriter().write(responseJSONObject.toString());
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
