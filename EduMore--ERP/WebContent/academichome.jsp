@@ -5,13 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="js/jquery.min.js"></script>
 <script>
 	function initAdmissionNotifications(){
-		$.getJSON("./loadPendingAdmission", function(response){
-			
-		},function(error){
-			
-		});
+		setTimeout(function(){
+			$.getJSON("./loadPendingAdmission", function(response){
+				var registeredEnquiryNumbers = response.enquiryNumbersList;
+				var admissionNotificationsTableRows = "";
+				for(var i in registeredEnquiryNumbers){
+					admissionNotificationsTableRows = admissionNotificationsTableRows + "<tr><td>"+registeredEnquiryNumbers[i]+"</td><td></td></tr>";
+				}
+				$("#admissionNotifications").append(admissionNotificationsTableRows);
+				$("#busyIndicator").hide();
+			},function(error){
+				
+			});
+		}, 4000);
+		
 	}
 </script>
 </head>
@@ -19,9 +29,12 @@
 <a href="./EnquiryList">List All Addmission</a><br>
 <a href="./addNewEnquiry.jsp">New Admission</a>
 <center>
-<div id="busyIndicator"><img src="images/busyIndicator.gif" alt='loading' /></div>
-<table id="admissionNotifications">
+<h3>New registrations</h3>
+<div id="busyIndicator"><img src="
+" alt='loading' /></div>
 
+<table id="admissionNotifications">
+<thead>
 </table>
 </center>
 </body>
