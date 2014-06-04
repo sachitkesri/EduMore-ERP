@@ -3,24 +3,26 @@
 
 <html><head><title>
 	Counsellor Home
-</title><link href="./css/NewStyleSheet.css" rel="stylesheet" type="text/css">
+</title>
+<link href="./css/NewStyleSheet.css" rel="stylesheet" type="text/css">
+<script src="/edumorelearning.com/js/jquery.min.js"></script>
 <script>
 
 function loadAllEnquiries(){
-	$.ajax("./EnquiryList", {
-        beforeSend: function(req) {
-            req.setRequestHeader("Accept", "text/html;type=ajax");
-        },  
-        complete : function(jqXHR){
-        	<%@ include file="/enquirylist.jsp" %>
-          //  $("#objectViewer").html(jqXHR.responseText);
+	console.log("Here");
+	$.get("/edumorelearning.com/EnquiryList", function(resp) {
+		console.log("Here");
+		//$('#content').load("/edumorelearning.com/enquirylist.jsp");
+		document.getElementById("confirmPopup").style.display="block";
+        }, function(error){
+        	console.log(error);
         }
-    });
+    );
 };
 
 </script></head>
 
-<body>
+<body id="content">
   
 <center>
     <div class="headmemspot">
@@ -66,6 +68,7 @@ function loadAllEnquiries(){
         </td>
         <td style="width:30px;text-align:center">
             <small>List</small>
+            <a href="/edumorelearning.com/EnquiryList"> List</a>
         </td>
        
         <td style="width:30px;text-align:center">
@@ -149,100 +152,7 @@ function loadAllEnquiries(){
       
         </div>
     </div>
- </center>   
-<!-- <script type="text/javascript">
-//<![CDATA[
-var Page_ValidationSummaries =  new Array(document.getElementById("ValidationSummary1"));
-var Page_Validators =  new Array(document.getElementById("ButtonControl_Report1_CompareValidator1"), document.getElementById("CompareValidator2"), document.getElementById("RequiredFieldValidator1"), document.getElementById("RequiredFieldValidator2"), document.getElementById("RequiredFieldValidator3"));
-//]]>
-</script>
-
-<script type="text/javascript">
-//<![CDATA[
-var ButtonControl_Report1_CompareValidator1 = document.all ? document.all["ButtonControl_Report1_CompareValidator1"] : document.getElementById("ButtonControl_Report1_CompareValidator1");
-ButtonControl_Report1_CompareValidator1.controltovalidate = "ButtonControl_Report1_CentreDropDownList";
-ButtonControl_Report1_CompareValidator1.errormessage = "Select Centre";
-ButtonControl_Report1_CompareValidator1.evaluationfunction = "CompareValidatorEvaluateIsValid";
-ButtonControl_Report1_CompareValidator1.valuetocompare = "0";
-ButtonControl_Report1_CompareValidator1.operator = "NotEqual";
-var CompareValidator2 = document.all ? document.all["CompareValidator2"] : document.getElementById("CompareValidator2");
-CompareValidator2.controltovalidate = "categoryDropDownList";
-CompareValidator2.errormessage = "Select Category";
-CompareValidator2.evaluationfunction = "CompareValidatorEvaluateIsValid";
-CompareValidator2.valuetocompare = "Select";
-CompareValidator2.operator = "NotEqual";
-var RequiredFieldValidator1 = document.all ? document.all["RequiredFieldValidator1"] : document.getElementById("RequiredFieldValidator1");
-RequiredFieldValidator1.controltovalidate = "Date1TextBox";
-RequiredFieldValidator1.errormessage = "Please Select From Date";
-RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator1.initialvalue = "";
-var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
-RequiredFieldValidator2.controltovalidate = "Date2TextBox";
-RequiredFieldValidator2.errormessage = "Please Select To Date";
-RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator2.initialvalue = "";
-var RequiredFieldValidator3 = document.all ? document.all["RequiredFieldValidator3"] : document.getElementById("RequiredFieldValidator3");
-RequiredFieldValidator3.controltovalidate = "Date3TextBox";
-RequiredFieldValidator3.errormessage = "Please Select Due Date";
-RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-RequiredFieldValidator3.initialvalue = "";
-//]]>
-</script>
-
-
-<script type="text/javascript">
-//<![CDATA[
-
-var Page_ValidationActive = false;
-if (typeof(ValidatorOnLoad) == "function") {
-    ValidatorOnLoad();
-}
-
-function ValidatorOnSubmit() {
-    if (Page_ValidationActive) {
-        return ValidatorCommonOnSubmit();
-    }
-    else {
-        return true;
-    }
-}
-        
-document.getElementById('ValidationSummary1').dispose = function() {
-    Array.remove(Page_ValidationSummaries, document.getElementById('ValidationSummary1'));
-}
-Sys.Application.initialize();
-
-document.getElementById('ButtonControl_Report1_CompareValidator1').dispose = function() {
-    Array.remove(Page_Validators, document.getElementById('ButtonControl_Report1_CompareValidator1'));
-}
-
-document.getElementById('CompareValidator2').dispose = function() {
-    Array.remove(Page_Validators, document.getElementById('CompareValidator2'));
-}
-
-document.getElementById('RequiredFieldValidator1').dispose = function() {
-    Array.remove(Page_Validators, document.getElementById('RequiredFieldValidator1'));
-}
-
-document.getElementById('RequiredFieldValidator2').dispose = function() {
-    Array.remove(Page_Validators, document.getElementById('RequiredFieldValidator2'));
-}
-
-document.getElementById('RequiredFieldValidator3').dispose = function() {
-    Array.remove(Page_Validators, document.getElementById('RequiredFieldValidator3'));
-}
-Sys.Application.add_init(function() {
-    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"CalendarExtender3"}, null, null, $get("Date3TextBox"));
-});
-Sys.Application.add_init(function() {
-    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"CalendarExtender1"}, null, null, $get("Date1TextBox"));
-});
-Sys.Application.add_init(function() {
-    $create(Sys.Extended.UI.CalendarBehavior, {"format":"dd/MM/yyyy","id":"CalendarExtender2"}, null, null, $get("Date2TextBox"));
-});
-//]]>
-</script>
- -->
-
+ </center>  
+ 
 
 </body></html>
