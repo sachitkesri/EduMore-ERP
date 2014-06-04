@@ -45,9 +45,9 @@ public class EnquiryList extends HttpServlet {
 		try {
 			enquiryList = new EnquiryBusiness().listAllEnquiries();
 			request.setAttribute("list", enquiryList);
-			RequestDispatcher dis = request.getRequestDispatcher("enquirylist.jsp");  
-		    dis.forward(request, response); 
-		    
+			System.out.println(request.getContextPath());
+			RequestDispatcher dis =  request.getRequestDispatcher("/counsellor/enquirylist.jsp");
+			dis.forward(request, response); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
