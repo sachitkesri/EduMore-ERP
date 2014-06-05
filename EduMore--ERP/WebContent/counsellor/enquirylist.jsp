@@ -107,7 +107,7 @@ body.custom-background { background-color: #ffffff; }
 
 <tr>
 <td>
-<table border="1" cellpadding="30" align="center">
+<table border="1" cellpadding="10" align="center">
 <tbody>
 <tr bgcolor="#20a7c9">
 <td><b><span style="color: white;">S.No</span></b></td>

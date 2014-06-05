@@ -58,11 +58,11 @@ public class LoginServlet extends HttpServlet {
 			httpSession.setAttribute("loginType", profile.getRole());
 			//RequestDispatcher dispatcher = null;
 			if(profile.getRole().equalsIgnoreCase("admin")){
-				//dispatcher = request.getRequestDispatcher("adminHome.jsp");
+				response.sendRedirect("./admin/adminhome.jsp");
 			}else if(profile.getRole().equalsIgnoreCase("counsellor")){
 				response.sendRedirect("./counsellor/counsellorhome.jsp");
 			}else if(profile.getRole().equalsIgnoreCase("academic")){
-				//dispatcher = request.getRequestDispatcher("academichome.jsp");
+				response.sendRedirect("./academic/academichome.jsp");
 			}
 			//dispatcher.se(request, response);
 		}else{

@@ -30,11 +30,10 @@
 <a href="./addNewEnquiry.jsp">New Admission</a>
 <center>
 <h3>New registrations</h3>
-<div id="busyIndicator"><img src="
-" alt='loading' /></div>
+<div id="busyIndicator"><img src="" alt='loading' /></div>
 
 <table id="admissionNotifications">
-<thead>
+
 </table>
 </center>
 </body>

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>Summer Training Online Registration Form</title>
+<title>Admin Home</title>
 <!-- <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="http://www.edumorelearning.com/xmlrpc.php">
  --><!--[if lt IE 9]>

@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face{
+		font-family:'FontAwesome';
+		src:url('../fonts/fontawesome-webfont.eot?v=3.2.1');
+		src:url('../fonts/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'),
+		url('../fonts/fontawesome-webfont.woff?v=3.2.1') format('woff'),
+		url('../fonts/fontawesome-webfont.ttf?v=3.2.1') format('truetype'),
+		url('../fonts/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');
+		font-weight:normal;font-style:normal;
+		
+		}
+		
+@font-face {
+    font-family: 'zil_semi_slabregular';
+    src: url('../fonts/zil-webfont.eot');
+    src: url('../fonts/zil-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/zil-webfont.woff') format('woff'),
+         url('../fonts/zil-webfont.ttf') format('truetype'),
+         url('../fonts/zil-webfont.svg#zil_semi_slabregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}		
+		
+
+@font-face {
+    font-family: 'akzidenz-grotesk_nextlight';
+    src: url('../fonts/agnextlight-webfont.eot');
+    src: url('../fonts/agnextlight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/agnextlight-webfont.woff') format('woff'),
+         url('../fonts/agnextlight-webfont.ttf') format('truetype'),
+         url('../fonts/agnextlight-webfont.svg#akzidenz-grotesk_nextlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'akzidenz-grotesk_nextmedium';
+    src: url('../fonts/agnextmedium-webfont.eot');
+    src: url('../fonts/agnextmedium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/agnextmedium-webfont.woff') format('woff'),
+         url('../fonts/agnextmedium-webfont.ttf') format('truetype'),
+         url('../fonts/agnextmedium-webfont.svg#akzidenz-grotesk_nextmedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'akzidenz-grotesk_next_regulRg';
+    src: url('../fonts/agnextregular-webfont.eot');
+    src: url('../fonts/agnextregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/agnextregular-webfont.woff') format('woff'),
+         url('../fonts/agnextregular-webfont.ttf') format('truetype'),
+         url('../fonts/agnextregular-webfont.svg#akzidenz-grotesk_next_regulRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
