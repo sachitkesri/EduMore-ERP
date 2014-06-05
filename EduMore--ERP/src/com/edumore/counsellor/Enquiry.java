@@ -19,7 +19,7 @@ import com.edumore.counsellor.business.EnquiryBusiness;
 /**
  * Servlet implementation class NewEnquiry
  */
-@WebServlet("/NewEnquiry")
+@WebServlet("/counsellor/NewEnquiry")
 public class Enquiry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -113,8 +113,10 @@ public class Enquiry extends HttpServlet {
 		}
 		if(isAdded){
 			request.setAttribute("statusMsg", "Saved Successfully");
+			request.setAttribute("statusMsgColor", "green");
 		}else{
 			request.setAttribute("statusMsg", "Some Error occur while saving");
+			request.setAttribute("statusMsgColor", "red");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("addNewEnquiry.jsp");
 		rd.forward(request, response);

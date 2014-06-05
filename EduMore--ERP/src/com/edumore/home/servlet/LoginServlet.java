@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.edumore.admin.bean.UserBean;
 import com.edumore.home.business.LoginBusiness;
 
 /**
@@ -40,13 +41,11 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession httpSession = request.getSession();
-		
+		UserBean profile = new UserBean();
 		String username = request.getParameter("username").toString();
 		String password = request.getParameter("password").toString();
-		System.out.println(httpSession.getAttribute("loginType").toString());
-		int userLoginId = 0;
 		try {
-			userLoginId = LoginBusiness.verifyLogin(username, password, httpSession.getAttribute("loginType").toString());
+			profile = LoginBusiness.verifyLogin(username, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,17 +53,18 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(userLoginId != -1){
-			httpSession.setAttribute("userLoginId", userLoginId);
-			RequestDispatcher dispatcher = null;
-			if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("admin")){
-				dispatcher = request.getRequestDispatcher("adminHome.jsp");
-			}else if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("counsellor")){
-				dispatcher = request.getRequestDispatcher("counsellorhome.jsp");
-			}else if(httpSession.getAttribute("loginType").toString().equalsIgnoreCase("academic")){
-				dispatcher = request.getRequestDispatcher("academichome.jsp");
+		if(profile.getUserId() != -1){
+			httpSession.setAttribute("userLoginId", profile.getUserId());
+			httpSession.setAttribute("loginType", profile.getRole());
+			//RequestDispatcher dispatcher = null;
+			if(profile.getRole().equalsIgnoreCase("admin")){
+				//dispatcher = request.getRequestDispatcher("adminHome.jsp");
+			}else if(profile.getRole().equalsIgnoreCase("counsellor")){
+				response.sendRedirect("./counsellor/counsellorhome.jsp");
+			}else if(profile.getRole().equalsIgnoreCase("academic")){
+				//dispatcher = request.getRequestDispatcher("academichome.jsp");
 			}
-			dispatcher.forward(request, response);
+			//dispatcher.se(request, response);
 		}else{
 			request.setAttribute("loginStatusMsgColor", "red");
 			request.setAttribute("loginStatusMessage", "username or password is incorrect!");

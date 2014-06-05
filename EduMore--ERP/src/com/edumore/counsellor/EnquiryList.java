@@ -18,7 +18,7 @@ import com.edumore.counsellor.business.EnquiryBusiness;
 /**
  * Servlet implementation class EnquiryList
  */
-@WebServlet("/EnquiryList")
+@WebServlet("/counsellor/EnquiryList")
 public class EnquiryList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,7 +46,7 @@ public class EnquiryList extends HttpServlet {
 			enquiryList = new EnquiryBusiness().listAllEnquiries();
 			request.setAttribute("list", enquiryList);
 			System.out.println(request.getContextPath());
-			RequestDispatcher dis =  request.getRequestDispatcher("/counsellor/enquirylist.jsp");
+			RequestDispatcher dis =  request.getRequestDispatcher("enquirylist.jsp");
 			dis.forward(request, response); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

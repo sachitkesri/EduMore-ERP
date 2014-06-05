@@ -3,7 +3,7 @@ package com.edumore.admin.bean;
 import java.sql.Date;
 
 public class UserBean {
-	
+	private int userId = -1;
 	private String name;
 	private String role;
 	private String email;
@@ -12,6 +12,12 @@ public class UserBean {
 	private String address;
 	private String username;
 	private String password;
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getName() {
 		return name;
 	}

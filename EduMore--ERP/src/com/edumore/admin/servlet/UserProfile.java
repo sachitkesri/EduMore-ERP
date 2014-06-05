@@ -19,7 +19,7 @@ import com.edumore.admin.service.UserProfileBusiness;
 /**
  * Servlet implementation class UserProfile
  */
-@WebServlet("/UserProfile")
+@WebServlet("/admin/UserProfile")
 public class UserProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,14 +35,14 @@ public class UserProfile extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("Test App&&");
 		try {
 			UserBean userBean = new UserBean();
 			userBean.setName(request.getParameter("name").toString());

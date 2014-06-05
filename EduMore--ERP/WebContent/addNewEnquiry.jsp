@@ -22,7 +22,7 @@ $(document).ready(function(){
 </head>
 <body>
 
-<form action="./NewEnquiry" method="post">
+<form action="NewEnquiry" method="post">
 <input type="hidden" value="addNewEnquiry" name="action"/>
 <label> First Name</label>
 <input type="text" name="firstName"></input>

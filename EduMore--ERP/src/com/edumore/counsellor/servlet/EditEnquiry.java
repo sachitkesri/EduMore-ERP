@@ -16,7 +16,7 @@ import com.edumore.counsellor.business.EditEnquiryBusiness;
 /**
  * Servlet implementation class EditEnquiry
  */
-@WebServlet("/EditEnquiry")
+@WebServlet("/counsellor/EditEnquiry")
 public class EditEnquiry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

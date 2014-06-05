@@ -11,7 +11,7 @@
     </style>
     </head>
 <body>
-    <form name="form1" method="post" action="http://hclcdc.in/empower/mislogin.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+   <form action="./Login" method="post">
 <div>
 <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
 <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
@@ -92,26 +92,29 @@ return true;
                 <div class="left_main">
                   <div class="main_wrap">
                   <div id="content">
-			<ul>
-				<li>
+			<ul><li>
 					<label for="username">User Name</label>
-                    <input name="unameTextBox" type="text" id="unameTextBox" accesskey="n" tabindex="1">
+                    <input name="username" type="text" id="unameTextBox" accesskey="n" tabindex="1">
 					
 				    <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">*</span>
 				</li>
 				<li>
 					<label for="password">Password </label>
-                         <input name="upassTextBox" type="password" id="upassTextBox" accesskey="n" tabindex="2">
+                         <input name="password" type="password" id="upassTextBox" accesskey="n" tabindex="2">
 					
 				    <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">*</span>
 				</li>
+				<li>
+				<label style="color:${loginStatusMsgColor}">${loginStatusMessage}</label>
+				</li>
+				
 			</ul>
                  <div class="style1">
                        
               <span id="RequiredFieldValidator3" style="color:Red;visibility:hidden;">*</span>  <strong>  <span id="Label1"></span>
                      </strong></div>
 			<div id="buttons">
-                <input type="submit" name="submit" value="Login" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;submit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="submit">
+                <input type="submit" name="submit" value="Login" id="submit">
                	
 
 			</div>
