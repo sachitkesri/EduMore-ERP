@@ -42,7 +42,8 @@ public class EnquiryListDAO {
 			bean.setCurrentAddress(fetchAddress(bean.getEnquiry_id(), "current"));
 			bean.setPermanentAddress(fetchAddress(bean.getEnquiry_id(), "current"));
 			bean.setEnquiryNumber(Long.parseLong(rs.getString(18)));
-			
+			bean.setCourseId(rs.getInt(21));
+			System.out.println("Test.." +bean.getCourseId());
 			enquiryBeans.add(bean);
 		}
 		

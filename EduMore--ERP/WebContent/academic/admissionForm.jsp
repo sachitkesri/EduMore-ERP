@@ -31,9 +31,9 @@
 <link rel="stylesheet" id="twentytwelve-fonts-css" href="css/css(1)" type="text/css" media="all">
 <link rel="stylesheet" id="twentytwelve-style-css" href="css/style.css" type="text/css" media="all">
 
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="js/comment-reply.min.js"></script>
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./js/comment-reply.min.js"></script>
 <!-- <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.edumorelearning.com/xmlrpc.php?rsd">
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.edumorelearning.com/wp-includes/wlwmanifest.xml">  -->
 <!-- <meta name="generator" content="WordPress 3.8.3">
@@ -50,7 +50,7 @@ body.custom-background { background-color: #ffffff; }
 <div class="header-block">
   <div class="container-fluid page_wrap">
     <div class="row-fluid">
-    <div class="span3"> <div class="logo">		<a href="http://www.edumorelearning.com/"><img src="images/logo.gif" class="header-image" width="326" height="116" alt=""></a>
+    <div class="span3"> <div class="logo">		<a href="http://www.edumorelearning.com/"><img src="/images/logo.gif" class="header-image" width="326" height="116" alt=""></a>
 		</div> </div>
         
       <div class="span9">

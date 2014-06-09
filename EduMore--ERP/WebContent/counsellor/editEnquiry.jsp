@@ -43,9 +43,30 @@
 <style type="text/css" id="custom-background-css">
 body.custom-background { background-color: #ffffff; }
 </style>
+
+<script type="text/javascript">
+function loadCourses(){
+	$.getJSON("/edumorelearning.com/LoadCourses", function(resp){
+		var courseList = "";
+		for(var key in resp){
+			if($("#enquiredCourse").val() == key){
+				courseList = courseList + '<option selected="selected" value="'+key+'">'+resp[key]+'</option>';
+			}else{
+				courseList = courseList + '<option value="'+key+'">'+resp[key]+'</option>';
+			}
+			
+		}
+		$("#courseList").append(courseList);
+	},function(error){
+		console.log(error);
+	});
+}
+
+
+</script>
 </head>
 
-<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author">
+<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author" onload="loadCourses()">
 <!-- Header Starts -->
 <div class="header-block">
   <div class="container-fluid page_wrap">
@@ -161,7 +182,14 @@ body.custom-background { background-color: #ffffff; }
 <td><span class="wpcf7-form-control-wrap city"><input type="text" name="fatherLastName" value="<%= bean.getFatherLastName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
 </tr>
 
+<tr>
+<td><input id="enquiredCourse" type="hidden" value="<%= bean.getCourseId() %>"/>Course<span style="color: red;">*</span></td>
 
+<td><span class="wpcf7-form-control-wrap city">
+<select id="courseList" name="course" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false">
+<option value="-1">Select Course</option>
+</select></span></td>
+</tr>
 <tr>
 <td colspan="2" bgcolor="green"><span style="color: white;"><b>Current Address</b> </span></td>
 </tr>
@@ -279,7 +307,7 @@ i++;
 </tr>
 </tbody></table></td></tr>
 <tr align="right">
-<td colspan="2"><a href="javascript:void(0);" id="addNewRow" class="wpcf7-form-control wpcf7-submit">+Add New Qualification</a><input type="hidden" id="educationNumber" name="educationNumber" value="<%= i %>"></input></td>
+<td colspan="2"><a href="javascript:void(0);" id="addNewRow" class="wpcf7-form-control wpcf7-submit">+Add New Qualification</a><input type="hidden" id="educationNumber" name="educationNumber" value="<%= --i %>"></input></td>
 </tr>
 </tbody>
 </table>

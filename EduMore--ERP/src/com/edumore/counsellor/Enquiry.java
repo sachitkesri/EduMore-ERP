@@ -48,6 +48,7 @@ public class Enquiry extends HttpServlet {
 		int noOfEducations = Integer.parseInt(request.getParameter("educationNumber").toString());
 		System.out.println(noOfEducations);
 		for(int i = 0; i <= noOfEducations; i++){
+			System.out.println("i = " +i);
 			EducationalQualification qualification = new EducationalQualification();
 			qualification.setQualification(request.getParameter("qualification_"+i).toString());
 			qualification.setCollege(request.getParameter("schoolName_"+i).toString());
@@ -92,7 +93,8 @@ public class Enquiry extends HttpServlet {
 		
 		enquiryBean.setCurrentAddress(currentAddress);
 		enquiryBean.setPermanentAddress(permanentAddress);
-		
+		System.out.println(request.getParameter("course"));
+		enquiryBean.setCourseId(Integer.parseInt(request.getParameter("course").toString()));
 		boolean isAdded = false;
 		try {
 			if(request.getParameter("action").toString().equalsIgnoreCase("addNewEnquiry")){

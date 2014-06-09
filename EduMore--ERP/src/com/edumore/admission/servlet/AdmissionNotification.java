@@ -47,7 +47,6 @@ public class AdmissionNotification extends HttpServlet {
 			JSONArray enquiryNumbersListJSON = new JSONArray();
 			JSONObject responseJSONObject = new JSONObject();
 			for(String enquiryNumber : enquiryNumbers){
-				System.out.println(enquiryNumber);
 				enquiryNumbersListJSON.add(enquiryNumber);
 			}
 			responseJSONObject.put("enquiryNumbersList", enquiryNumbersListJSON);

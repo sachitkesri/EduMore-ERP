@@ -3,7 +3,6 @@ package com.edumore.counsellor.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,52 +19,63 @@ import com.edumore.counsellor.business.RegistrationBusiness;
 /**
  * Servlet implementation class Registration
  */
-@WebServlet("/register")
+@WebServlet("/counsellor/register")
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Registration() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Registration() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			RegistrationBean registrationBean = new RegistrationBean();
-			registrationBean.setEnquiryNumber(request.getParameter("enquiryNumber"));
-			registrationBean.setRegistrationFee(Float.parseFloat(request.getParameter("amount").toString()));
+			registrationBean.setEnquiryNumber(request
+					.getParameter("enquiryNumber"));
+			registrationBean.setRegistrationFee(Float.parseFloat(request
+					.getParameter("amount").toString()));
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date date1 = new Date(System.currentTimeMillis());
 			java.sql.Date date = new java.sql.Date(date1.getTime());
 			registrationBean.setRegistrationDate(date);
-			boolean isRegisterd = new RegistrationBusiness().registerEnquiry(registrationBean, "registration");
-			if(isRegisterd){
-				RequestDispatcher dispatcher = request.getRequestDispatcher("invoce.jsp");
+			boolean isRegisterd = new RegistrationBusiness().registerEnquiry(
+					registrationBean, "registration");
+			if (isRegisterd) {
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("invoce.jsp");
 				dispatcher.forward(request, response);
-			}else{
+			} else {
 				request.setAttribute("registrationStatusMsgColor", "red");
-				request.setAttribute("registrationStatusMessage", "Some error occured while registering. Please contact administrator or check entered data");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("registration.jsp");
+				request.setAttribute(
+						"registrationStatusMessage",
+						"Some error occured while registering. Please contact administrator or check entered data");
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("registration.jsp");
 				dispatcher.forward(request, response);
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

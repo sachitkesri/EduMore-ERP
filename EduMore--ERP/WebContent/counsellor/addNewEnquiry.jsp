@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.edumore.admin.bean.CourseBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -42,9 +44,24 @@
 <style type="text/css" id="custom-background-css">
 body.custom-background { background-color: #ffffff; }
 </style>
+<script type="text/javascript">
+function loadCourses(){
+	$.getJSON("/edumorelearning.com/LoadCourses", function(resp){
+		var courseList = "";
+		for(var key in resp){
+			courseList = courseList + '<option value="'+key+'">'+resp[key]+'</option>';
+		}
+		$("#courseList").append(courseList);
+	},function(error){
+		console.log(error);
+	});
+}
+
+
+</script>
 </head>
 
-<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author">
+<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author" onload="loadCourses()">
 <!-- Header Starts -->
 <div class="header-block">
   <div class="container-fluid page_wrap">
@@ -156,7 +173,13 @@ body.custom-background { background-color: #ffffff; }
 <td>Father Last Name <span style="color: red;">*</span></td>
 <td><span class="wpcf7-form-control-wrap city"><input type="text" name="fatherLastName" value="" size="30" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
 </tr>
-
+<tr>
+<td>Course<span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap city">
+<select id="courseList" name="course" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false">
+<option value="-1">Select Course</option>
+</select></span></td>
+</tr>
 
 <tr>
 <td colspan="2" bgcolor="green"><span style="color: white;"><b>Current Address</b> </span></td>
@@ -456,7 +479,7 @@ $("#addNewRow").click(function(){
     $("#educationNumber").val(educationNumber);
     
 });
-	 
+
 });
 </script>
 

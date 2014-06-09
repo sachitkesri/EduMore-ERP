@@ -22,9 +22,11 @@ public class NewEnquiryDAO {
 		addNewAddress(enquiryBean, enquiryBean.getPermanentAddress(), "permanent");
 		int currentAddressId = fetchAddress(enquiryBean.getEnquiryNumber(), "current");
 		int permanentAddressId = fetchAddress(enquiryBean.getEnquiryNumber(), "permanent");
+		System.out.println("In DAO");
+		System.out.println(enquiryBean.getCourseId());
 		//'"+enquiryBean.getCurrentAddress().getHouseNumber()+"','"+enquiryBean.getCurrentAddress().getBuildingName()+"','"+enquiryBean.getCurrentAddress().getRoadName()+"','"+enquiryBean.getCurrentAddress().getAreaDetail()+"','"+enquiryBean.getCurrentAddress().getCity()+"','"+enquiryBean.getCurrentAddress().getState()+"','"+enquiryBean.getCurrentAddress().getPincode()+"'
-		String sql = "insert into enquiry_details(first_name,middle_name,last_name,residence_number,mobile_number,email_id,date_of_birth,gender,father_first_name,father_middle_name,father_last_name,father_mobile_number,father_residence_number,current_address,permanent_address,counsellor_id,enquiry_number) values(?,?,?,?,?,?,?,?,?,?,?,?,?,"+currentAddressId+","+permanentAddressId+",(SELECT counsellor_id FROM counsellor_login_details WHERE counsellor_id="
-				+ 1 + "),?)";
+		String sql = "insert into enquiry_details(first_name,middle_name,last_name,residence_number,mobile_number,email_id,date_of_birth,gender,father_first_name,father_middle_name,father_last_name,father_mobile_number,father_residence_number,current_address,permanent_address,counsellor_id,enquiry_number, course_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,"+currentAddressId+","+permanentAddressId+",(SELECT counsellor_id FROM counsellor_login_details WHERE counsellor_id="
+				+ 1 + "),?,(SELECT course_id FROM course_details WHERE course_id="+ enquiryBean.getCourseId() + "))";
 		PreparedStatement statement = (PreparedStatement) con
 				.prepareStatement(sql);
 		statement.setString(1, enquiryBean.getFirstName());

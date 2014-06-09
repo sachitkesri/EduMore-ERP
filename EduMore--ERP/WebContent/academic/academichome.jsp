@@ -45,13 +45,12 @@ body.custom-background { background-color: #ffffff; }
 <script src="js/jquery.min.js"></script>
 <script>
 	function initAdmissionNotifications(){
-		console.log("Here..");
 		setTimeout(function(){
 			$.getJSON("./loadPendingAdmission", function(response){
 				var registeredEnquiryNumbers = response.enquiryNumbersList;
 				var admissionNotificationsTableRows = "";
 				for(var i in registeredEnquiryNumbers){
-					admissionNotificationsTableRows = admissionNotificationsTableRows + "<tr><td><a href='/edumorelearning.com/LoadEnquiry?enquiryNumber="+registeredEnquiryNumbers[i]+"'>"+registeredEnquiryNumbers[i]+"</a></td><td></td></tr>";
+					admissionNotificationsTableRows = admissionNotificationsTableRows + "<tr><td><a href='./LoadEnquiry?enquiryNumber="+registeredEnquiryNumbers[i]+"'>"+registeredEnquiryNumbers[i]+"</a></td><td></td></tr>";
 				}
 				$("#admissionNotifications").append(admissionNotificationsTableRows);
 				$("#busyIndicator").hide();

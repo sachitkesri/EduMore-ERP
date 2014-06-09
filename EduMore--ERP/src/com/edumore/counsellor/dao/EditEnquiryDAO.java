@@ -39,6 +39,7 @@ public class EditEnquiryDAO {
 			bean.setFatherFirstName(rs.getString(10));
 			bean.setFatherMiddleName(rs.getString(11));
 			bean.setEnquiryNumber(rs.getLong(18));
+			bean.setCourseId(rs.getInt(21));
 			
 		}
 		return bean;

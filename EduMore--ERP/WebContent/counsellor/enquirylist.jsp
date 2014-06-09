@@ -126,7 +126,7 @@ body.custom-background { background-color: #ffffff; }
              <td>${element.firstName}${element.lastName}</td>
              <td>${element.mobileNumber}</td> 
 			 <td>${element.residenceNumber}</td> 
-            <td><a href="EditEnquiry?enquiryId=${element.enquiryNumber}">Edit</a><a id="addFollowup" href="javascript:addNewFollowUp(${element.enquiry_id})">Add Follow Up</a><a id="viewFollowup" href="javascript:viewFollowUp(${element.enquiry_id})">View Follow Up</a><a id="register" href="regisration.jsp?enquiryNumber=${element.enquiryNumber}">Register</a></td>
+            <td><a href="EditEnquiry?enquiryId=${element.enquiryNumber}">Edit</a><a id="addFollowup" href="javascript:addNewFollowUp(${element.enquiry_id})">Add Follow Up</a><a id="viewFollowup" href="javascript:viewFollowUp(${element.enquiry_id})">View Follow Up</a><a id="register" href="registration.jsp?enquiryNumber=${element.enquiryNumber}">Register</a></td>
         </tr> 
         <% i++; %>
     </c:forEach>

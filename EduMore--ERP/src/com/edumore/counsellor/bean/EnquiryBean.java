@@ -3,7 +3,7 @@ package com.edumore.counsellor.bean;
 import java.util.ArrayList;
 
 public class EnquiryBean {
-	
+
 	private int enquiry_id;
 	private long enquiryNumber;
 	private String firstName;
@@ -14,23 +14,25 @@ public class EnquiryBean {
 	private String emailId;
 	private String residenceNumber;
 	private String mobileNumber;
-	
+
 	private String fatherFirstName;
 	private String fatherMiddleName;
 	private String fatherLastName;
 	private String fatherResidenceNumber;
 	private String fatherMobileNumber;
-	
+
 	private Address currentAddress;
 	private Address permanentAddress;
-	
+
+	private int courseId = -1;
+
 	private ArrayList<EducationalQualification> educationalQualifications = new ArrayList<EducationalQualification>();
-	
+
 	private int counsellorId;
-	
+
 	private String enquiry_status;
 	private String admission_status;
-	
+
 	public int getEnquiry_id() {
 		return enquiry_id;
 	}
@@ -199,7 +201,13 @@ public class EnquiryBean {
 	public void setAdmission_status(String admission_status) {
 		this.admission_status = admission_status;
 	}
-	
-	
-	
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
 }

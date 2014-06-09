@@ -14,7 +14,7 @@
 <label>Amount Payble(in Rs)</label>
 <input type="text" name="amount">
 <br>
-<label>email</label>
+<label>E-mail</label>
 <input type="text" name="email">
 <br>
 <input type="submit" value="Register">
