@@ -14,12 +14,13 @@ public class NewCourseDAO {
 	public boolean insertNewCourse(CourseBean courseBean) throws SQLException,
 			ClassNotFoundException {
 		con = (Connection) EdumoreDBConnection.getDBConnection();
-		String sql = "insert into course_details(course_name, admin_id) values(?,(SELECT admin_id FROM admin_login_details WHERE admin_username=\""
-				+ courseBean.getAdminUsername() + "\"))";
+		String sql = "insert into course_details(course_title,course_fee,course_duration , admin_id) values(?,?,?,(SELECT user_id FROM user_details WHERE user_id=\""
+				+ courseBean.getAdminId() + "\"))";
 		PreparedStatement statement = (PreparedStatement) con
 				.prepareStatement(sql);
 		statement.setString(1, courseBean.getCourseTitle());
-		// statement.setInt(2, courseBean.getAdminId());
+		statement.setLong(2, courseBean.getCourseFee());
+		statement.setInt(3, courseBean.getCourseDuration());
 		int updated = statement.executeUpdate();
 		if (updated == 1) {
 			return true;

@@ -54,9 +54,9 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(profile.getUserId() != -1){
+			System.out.println("Profile:"+profile.getUserId());
 			httpSession.setAttribute("userLoginId", profile.getUserId());
 			httpSession.setAttribute("loginType", profile.getRole());
-			//RequestDispatcher dispatcher = null;
 			if(profile.getRole().equalsIgnoreCase("admin")){
 				response.sendRedirect("./admin/adminhome.jsp");
 			}else if(profile.getRole().equalsIgnoreCase("counsellor")){
@@ -64,7 +64,6 @@ public class LoginServlet extends HttpServlet {
 			}else if(profile.getRole().equalsIgnoreCase("academic")){
 				response.sendRedirect("./academic/academichome.jsp");
 			}
-			//dispatcher.se(request, response);
 		}else{
 			request.setAttribute("loginStatusMsgColor", "red");
 			request.setAttribute("loginStatusMessage", "username or password is incorrect!");

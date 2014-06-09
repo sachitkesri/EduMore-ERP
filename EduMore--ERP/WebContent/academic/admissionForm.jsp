@@ -1,38 +1,39 @@
+<%@page import="com.edumore.counsellor.bean.EducationalQualification"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+ <%@ page import="com.edumore.counsellor.bean.EnquiryBean"  %>
 
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>Academic Home</title>
+<title>Summer Training Online Registration Form</title>
 <!-- <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="http://www.edumorelearning.com/xmlrpc.php">
  --><!--[if lt IE 9]>
 <script src="http://www.edumorelearning.com/wp-content/themes/edumore/js/html5.js" type="text/javascript"></script>
 <![endif]-->
 <link rel="shortcut icon" href="http://www.edumorelearning.com/favicon.ico">
-<link rel="stylesheet" href="./css/bootstrap.css">
-<link rel="stylesheet" href="./css/bootstrap-responsive.css">
-<link rel="stylesheet" href="./css/fonts.css">
-<link rel="stylesheet" href="./css/font-awesome.css">
-<link href="./css/css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="./css/jquery.bxslider.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link href="css/css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/jquery.bxslider.css">
 
 
 <!-- <link rel="alternate" type="application/rss+xml" title="Edumore » Feed" href="http://www.edumorelearning.com/feed/">
 <link rel="alternate" type="application/rss+xml" title="Edumore » Comments Feed" href="http://www.edumorelearning.com/comments/feed/">
 <link rel="alternate" type="application/rss+xml" title="Edumore » Online Registration Form Comments Feed" href="http://www.edumorelearning.com/registration_page/feed/"> -->
-<link rel="stylesheet" id="contact-form-7-css" href="./css/styles.css" type="text/css" media="all">
-<link rel="stylesheet" id="mappress-css" href="./css/mappress.css" type="text/css" media="all">
-<link rel="stylesheet" id="twentytwelve-fonts-css" href="./css/css(1)" type="text/css" media="all">
-<link rel="stylesheet" id="twentytwelve-style-css" href="./css/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="css/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="mappress-css" href="css/mappress.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentytwelve-fonts-css" href="css/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="twentytwelve-style-css" href="css/style.css" type="text/css" media="all">
 
-<script type="text/javascript" src="./js/jquery.js"></script>
-<script type="text/javascript" src="./js/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="./js/comment-reply.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="js/comment-reply.min.js"></script>
 <!-- <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.edumorelearning.com/xmlrpc.php?rsd">
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.edumorelearning.com/wp-includes/wlwmanifest.xml">  -->
 <!-- <meta name="generator" content="WordPress 3.8.3">
@@ -42,34 +43,14 @@
 <style type="text/css" id="custom-background-css">
 body.custom-background { background-color: #ffffff; }
 </style>
-<script src="js/jquery.min.js"></script>
-<script>
-	function initAdmissionNotifications(){
-		console.log("Here..");
-		setTimeout(function(){
-			$.getJSON("./loadPendingAdmission", function(response){
-				var registeredEnquiryNumbers = response.enquiryNumbersList;
-				var admissionNotificationsTableRows = "";
-				for(var i in registeredEnquiryNumbers){
-					admissionNotificationsTableRows = admissionNotificationsTableRows + "<tr><td><a href='/edumorelearning.com/LoadEnquiry?enquiryNumber="+registeredEnquiryNumbers[i]+"'>"+registeredEnquiryNumbers[i]+"</a></td><td></td></tr>";
-				}
-				$("#admissionNotifications").append(admissionNotificationsTableRows);
-				$("#busyIndicator").hide();
-			},function(error){
-				
-			});
-		}, 4000);
-		
-	}
-</script>
 </head>
 
-<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author" onload="initAdmissionNotifications()">
+<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author">
 <!-- Header Starts -->
 <div class="header-block">
   <div class="container-fluid page_wrap">
     <div class="row-fluid">
-    <div class="span3"> <div class="logo">		<a href="http://www.edumorelearning.com/"><img src="./images/logo.gif" class="header-image" width="326" height="116" alt=""></a>
+    <div class="span3"> <div class="logo">		<a href="http://www.edumorelearning.com/"><img src="images/logo.gif" class="header-image" width="326" height="116" alt=""></a>
 		</div> </div>
         
       <div class="span9">
@@ -116,7 +97,7 @@ body.custom-background { background-color: #ffffff; }
 
 <div class="row-fluid">
 <div class="span12 content">
-						<h1>Academic Home</h1>
+						<h1>Admission Form</h1>
 			<div class="wpcf7" id="wpcf7-f330-p144-o1">
 <div class="screen-reader-response"></div>
 <div style="display: none;">
@@ -127,30 +108,192 @@ body.custom-background { background-color: #ffffff; }
 <input type="hidden" name="_wpnonce" value="e6f5400e06">
 </div>
 <div >
-<a href="./EnquiryList">List All Addmission</a><br>
-<a href="./newuser.jsp">New Admission</a>
+<a href="EnquiryList">List All Enquiries</a><br>
+<a href="#">Add New Enquiry</a>
 </div>
+<% EnquiryBean bean = (EnquiryBean)request.getAttribute("enquiry");%>
+<form action="NewEnquiry" method="post">
+<input type="hidden" value="updateEnquiry" name="action"/>
+<input type="hidden" value=<%= bean.getEnquiryNumber()  %> name="enquiryNumber"/>
+<input type="hidden" value=<%= bean.getEnquiry_id()  %> name="enquiryId"/>
+
+<table id="enquiryForm" align="center">
+<tbody>
+<!-- <tr>
+<td colspan="2" bgcolor="gray"><span style="color: white;"><b><a href="images/icon-register-online.png"><img class="size-full wp-image-192 aligncenter" alt="icon-register-online" src="images/icon-register-online.png" width="235" height="105"></a><br>
+</b></span></td>
+</tr> -->
+
+<tr>
+<td><input type="hidden" value="addNewEnquiry" name="action"/>First Name<span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap fname"><input type="text" name="firstName" value="<%= bean.getFirstName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Middle Name</td>
+<td><span class="wpcf7-form-control-wrap lname"><input type="text" name="middleName" value="<%= bean.getMiddleName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Last Name</td>
+<td><span class="wpcf7-form-control-wrap lname"><input type="text" name="lastName" value="<%= bean.getLastName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Residence No. <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap mob"><input type="text" name="residenceNumber" value="<%= bean.getResidenceNumber()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Mobile No. <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap mob"><input type="text" name="mobileNumber" value="<%= bean.getMobileNumber()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Email-ID <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap email_id"><input type="text" name="email" value="<%= bean.getEmailId() %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Father First Name <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="fatherFirstName" value="<%= bean.getFatherFirstName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Father Middle Name <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="fatherMiddleName" value="<%= bean.getFatherMiddleName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Father Last Name <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="fatherLastName" value="<%= bean.getFatherLastName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+
+
+<tr>
+<td colspan="2" bgcolor="green"><span style="color: white;"><b>Current Address</b> </span></td>
+</tr>
+<tr>
+<td>House/Flat/Block No.<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap course_type"><input type="text" name="currentHouseNumber" value="<%= bean.getCurrentAddress().getHouseNumber()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Building/Village/Premise<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="currentBuilding" value="<%= bean.getCurrentAddress().getBuildingName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Road/Street/ Post Office<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="currentRoad" value="<%= bean.getCurrentAddress().getRoadName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Area Detail<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="currentrArea" value="<%= bean.getCurrentAddress().getAreaDetail()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>District/Town/City<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="currentCity" value="<%= bean.getCurrentAddress().getCity()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>State<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="currentState" value="<%= bean.getCurrentAddress().getState()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Pincode<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="currentPincode" value="<%= bean.getCurrentAddress().getPincode()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+
+
+<tr>
+<td colspan="2" bgcolor="green"><span style="color: white;"><b>Permanent Address</b> </span></td>
+</tr>
+<tr>
+<td>House/Flat/Block No.<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap course_type"><input type="text" name="permanentHouseNumber" value="<%= bean.getPermanentAddress().getHouseNumber()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Building/Village/Premise<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="permanentBuilding" value="<%= bean.getPermanentAddress().getBuildingName()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Road/Street/ Post Office<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="permanentRoad" value="<%= bean.getPermanentAddress().getRoadName()  %>"   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Area Detail<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="permanentrArea" value="<%= bean.getPermanentAddress().getAreaDetail()  %>"   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>District/Town/City<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="permanentCity" value="<%= bean.getPermanentAddress().getCity()  %>"   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>State<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="permanentState" value="<%= bean.getPermanentAddress().getState()  %>"   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Pincode<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="permanentPincode" value="<%= bean.getPermanentAddress().getPincode()  %>"   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+
+</tbody>
+</table>
+<table align="center">
+<tbody>
+<tr><td>
+<table  id="educationalDetails" align="center">
+<tbody>
+<tr><td>
+<table align="center">
+<tbody>
+<tr>
+<td colspan="2" bgcolor="green"><span style="color: white;"><b>Academic Details</b> </span></td>
+</tr>
+<% int i=0;
+for(EducationalQualification educationalQualification : bean.getEducationalQualifications()){ 
+%>
+<tr>
+<td>College/School Name</td>
+<td><span class="wpcf7-form-control-wrap college_name"><input type="text" name="<%= "schoolName_" + i %>" value="<%= educationalQualification.getCollege()  %>"   class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>University/Board</td>
+<td><span class="wpcf7-form-control-wrap uni_name"><input type="text" name="<%= "board_" + i %>" value="<%= educationalQualification.getUnversity()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Qualification<span style="color: red;"></span></td>
+<td><span class="wpcf7-form-control-wrap p_qual"><select name="<%= "qualification_" + i %>" value="<%= educationalQualification.getQualification()  %>" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="B.Tech">B.Tech</option><option value="B.Tech+M.Tech">B.Tech+M.Tech</option><option value="MCA">MCA</option><option value="BCA">BCA</option><option value="B.E.">B.E.</option><option value="B.Tech+MBA">B.Tech+MBA</option><option value="BCA+MCA">BCA+MCA</option><option value="Diploma in Engineering">Diploma in Engineering</option><option value="PGDM">PGDM</option><option value="B.A.">B.A.</option><option value="B.Com">B.Com</option><option value="Other Qualification">Other Qualification</option></select></span></td>
+</tr>
+
+<tr>
+<td>Status</td>
+<td><span class="wpcf7-form-control-wrap Semester"><select name="<%= "status_" + i %>"  class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="completed">Completed</option><option value="Pursuing">Pursuing</option></select></span></td>
+</tr>
+<tr>
+<td>Completed Year</td>
+<td><input type="text" name="<%= "completedYear_" + i %>" value="<%= educationalQualification.getCompletedYear()  %>" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></td>
+</tr>
+<tr>
+<td>Grade/ % marks</td>
+<td><input type="text" name="<%= "marksSecured_" + i %>" value="<%= educationalQualification.getGrade()  %>"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></td>
+
+</tr>
+<%
+i++;
+} 
+%>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody></table></td></tr>
+<tr align="right">
+<td colspan="2"><a href="javascript:void(0);" id="addNewRow" class="wpcf7-form-control wpcf7-submit">+Add New Qualification</a><input type="hidden" id="educationNumber" name="educationNumber" value="<%= i %>"></input></td>
+</tr>
+</tbody>
+</table>
+
+
 
 <table align="center">
-<tr>
-<td>
-<div class="span12 content">
-<h3>New registrations</h3>
-</div>
-</td>
+<tbody>
+<tr align="right">
+<td colspan="2"><input type="submit" value="Register" class="wpcf7-form-control wpcf7-submit" id="submit"></td>
 </tr>
-<tr>
-<td>
-<div id="busyIndicator"><img src="images/busyIndicator.gif" alt='loading' /></div>
-
-<table align="center" id="admissionNotifications">
-
+</tbody>
 </table>
-</td>
-</tr>
-
-</table>
-
+</form>
 <div class="wpcf7-response-output wpcf7-display-none"></div></div>
 											</div>
 		</div><!-- #content -->
@@ -214,7 +357,7 @@ Phone: 0120-4166660 <br>Mobile: +91 987 153 7861/62 <br>Email: info@edumorelearn
 </li>
 <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a>Software Testing</a></li>
 </ul></div>
-  <div class="span3 footer-img"><img src="./images/footer-img.jpg"></div>
+  <div class="span3 footer-img"><img src="images/footer-img.jpg"></div>
   </div>
     <div class="row-fluid copy border">
     <div class="span6">Copyright @ 2014 Edumore All Rights Reserved</div>
@@ -231,9 +374,9 @@ Phone: 0120-4166660 <br>Mobile: +91 987 153 7861/62 <br>Email: info@edumorelearn
 </div>
 
 <!-- JS -->
-<script src="./js/jquery(1).js"></script>
-<script src="./js/jquery.bxslider.js"></script>
-<script src="./js/bootstrap.js"></script>
+<script src="js/jquery(1).js"></script>
+<script src="js/jquery.bxslider.js"></script>
+<script src="js/bootstrap.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -243,7 +386,7 @@ $(document).ready(function(){
 	var nameInfo = $("#nameInfo");
 	var email = $("#email");
 	var emailInfo = $("#emailInfo");
-	var educationNumber = 0;
+	var educationNumber = $("#educationNumber").val();;
 	//On blur
 	name.blur(validateName);
 	email.blur(validateEmail);
@@ -316,10 +459,10 @@ $(this).children('.sub-menu').slideUp();
 });
 });
 
-$("#educationNumber").val(educationNumber);
+
 $("#addNewRow").click(function(){
 	educationNumber++;
-    $("#educationalDetails").append('<tr><td><table align="right"><tbody><tr><td>College/School Name</td><td><span class="wpcf7-form-control-wrap college_name"><input type="text" name="schoolName_'+educationNumber+'" value="" size="35" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td></tr><tr><td>University/Board</td><td><span class="wpcf7-form-control-wrap uni_name"><input type="text" name="board_'+educationNumber+'" value="" size="35" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td></tr><tr><td>Qualification<span style="color: red;"></span></td><td><span class="wpcf7-form-control-wrap p_qual"><select name="qualification_'+educationNumber+'" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="B.Tech">B.Tech</option><option value="B.Tech+M.Tech">B.Tech+M.Tech</option><option value="MCA">MCA</option><option value="BCA">BCA</option><option value="B.E.">B.E.</option><option value="B.Tech+MBA">B.Tech+MBA</option><option value="BCA+MCA">BCA+MCA</option><option value="Diploma in Engineering">Diploma in Engineering</option><option value="PGDM">PGDM</option><option value="B.A.">B.A.</option><option value="B.Com">B.Com</option><option value="Other Qualification">Other Qualification</option></select></span></td></tr><tr><td>Status</td><td><span class="wpcf7-form-control-wrap Semester"><select name="status_'+educationNumber+'" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="completed">Completed</option><option value="Pursuing">Pursuing</option></select></span></td></tr><tr><td>Completed Year</td><td><input type="text" name="completedYear_'+educationNumber+'" size="35"></td></tr><tr><td>Grade/ % marks</td><td><input type="text" name="marksSecured_'+educationNumber+'" size="35"></td></tr></tbody></table></td></tr>');
+    $("#educationalDetails").append('<tr><td><table align="right"><tbody><tr><td>College/School Name</td><td><span class="wpcf7-form-control-wrap college_name"><input type="text" name="schoolName_'+educationNumber+'" value=""  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td></tr><tr><td>University/Board</td><td><span class="wpcf7-form-control-wrap uni_name"><input type="text" name="board_'+educationNumber+'" value=""  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td></tr><tr><td>Qualification<span style="color: red;"></span></td><td><span class="wpcf7-form-control-wrap p_qual"><select name="qualification_'+educationNumber+'" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="B.Tech">B.Tech</option><option value="B.Tech+M.Tech">B.Tech+M.Tech</option><option value="MCA">MCA</option><option value="BCA">BCA</option><option value="B.E.">B.E.</option><option value="B.Tech+MBA">B.Tech+MBA</option><option value="BCA+MCA">BCA+MCA</option><option value="Diploma in Engineering">Diploma in Engineering</option><option value="PGDM">PGDM</option><option value="B.A.">B.A.</option><option value="B.Com">B.Com</option><option value="Other Qualification">Other Qualification</option></select></span></td></tr><tr><td>Status</td><td><span class="wpcf7-form-control-wrap Semester"><select name="status_'+educationNumber+'" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="completed">Completed</option><option value="Pursuing">Pursuing</option></select></span></td></tr><tr><td>Completed Year</td><td><input type="text" name="completedYear_'+educationNumber+'" ></td></tr><tr><td>Grade/ % marks</td><td><input type="text" name="marksSecured_'+educationNumber+'" ></td></tr></tbody></table></td></tr>');
     $("#educationNumber").val(educationNumber);
     
 });

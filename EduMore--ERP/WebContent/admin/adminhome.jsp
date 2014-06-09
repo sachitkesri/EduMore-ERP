@@ -108,7 +108,7 @@ body.custom-background { background-color: #ffffff; }
 </div>
 <div >
 <a href="./newuser.jsp">Add New User</a><br>
-<a href="#">Add Course</a><br>
+<a href="./newCourse.jsp">Add Course</a><br>
 <a href="#">Add Batch</a><br>
 <a href="#">List All User</a><br>
 <a href="#">Delete User</a><br>

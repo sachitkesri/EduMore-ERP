@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>Academic Home</title>
+<title>User</title>
 <!-- <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="http://www.edumorelearning.com/xmlrpc.php">
  --><!--[if lt IE 9]>
@@ -42,29 +42,9 @@
 <style type="text/css" id="custom-background-css">
 body.custom-background { background-color: #ffffff; }
 </style>
-<script src="js/jquery.min.js"></script>
-<script>
-	function initAdmissionNotifications(){
-		console.log("Here..");
-		setTimeout(function(){
-			$.getJSON("./loadPendingAdmission", function(response){
-				var registeredEnquiryNumbers = response.enquiryNumbersList;
-				var admissionNotificationsTableRows = "";
-				for(var i in registeredEnquiryNumbers){
-					admissionNotificationsTableRows = admissionNotificationsTableRows + "<tr><td><a href='/edumorelearning.com/LoadEnquiry?enquiryNumber="+registeredEnquiryNumbers[i]+"'>"+registeredEnquiryNumbers[i]+"</a></td><td></td></tr>";
-				}
-				$("#admissionNotifications").append(admissionNotificationsTableRows);
-				$("#busyIndicator").hide();
-			},function(error){
-				
-			});
-		}, 4000);
-		
-	}
-</script>
 </head>
 
-<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author" onload="initAdmissionNotifications()">
+<body class="page page-id-144 page-template-default custom-background custom-background-white custom-font-enabled single-author">
 <!-- Header Starts -->
 <div class="header-block">
   <div class="container-fluid page_wrap">
@@ -116,7 +96,7 @@ body.custom-background { background-color: #ffffff; }
 
 <div class="row-fluid">
 <div class="span12 content">
-						<h1>Academic Home</h1>
+						<h1>New Course</h1>
 			<div class="wpcf7" id="wpcf7-f330-p144-o1">
 <div class="screen-reader-response"></div>
 <div style="display: none;">
@@ -127,30 +107,48 @@ body.custom-background { background-color: #ffffff; }
 <input type="hidden" name="_wpnonce" value="e6f5400e06">
 </div>
 <div >
-<a href="./EnquiryList">List All Addmission</a><br>
-<a href="./newuser.jsp">New Admission</a>
+<a href="./newuser.jsp">Add New User</a><br>
+<a href="#">Add Course</a><br>
+<a href="#">Add Batch</a><br>
+<a href="#">List All User</a><br>
+<a href="#">Delete User</a><br>
 </div>
+<form action="AddCourse" method="post">
+<table id="userDetailForm" align="center">
+<tbody>
+
+<tr>
+<td><span style="color: ${statusMsgColor};"><b>${statusMsg}</b></span></td>
+</tr>
+
+<tr>
+<td>Course Title <span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap mob"><input type="text" name="courseTitle" value="" size="30" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td>
+</tr>
+<tr>
+<td>Course Duration<span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap email_id"><input type="text" name="courseFee" value="" size="30" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false">(in months)</span></td>
+</tr>
+<tr>
+<td>Course Fee<span style="color: red;">*</span></td>
+<td><span class="wpcf7-form-control-wrap city"><input type="text" name="courseDuration" value="" size="30" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false">(in Rs.)</span></td>
+</tr>
+
+
+</tbody>
+</table>
+
+
+
 
 <table align="center">
-<tr>
-<td>
-<div class="span12 content">
-<h3>New registrations</h3>
-</div>
-</td>
+<tbody>
+<tr align="right">
+<td colspan="2"><input type="submit" value="Add User" class="wpcf7-form-control wpcf7-submit" id="submit"></td>
 </tr>
-<tr>
-<td>
-<div id="busyIndicator"><img src="images/busyIndicator.gif" alt='loading' /></div>
-
-<table align="center" id="admissionNotifications">
-
+</tbody>
 </table>
-</td>
-</tr>
-
-</table>
-
+</form>
 <div class="wpcf7-response-output wpcf7-display-none"></div></div>
 											</div>
 		</div><!-- #content -->
@@ -316,13 +314,6 @@ $(this).children('.sub-menu').slideUp();
 });
 });
 
-$("#educationNumber").val(educationNumber);
-$("#addNewRow").click(function(){
-	educationNumber++;
-    $("#educationalDetails").append('<tr><td><table align="right"><tbody><tr><td>College/School Name</td><td><span class="wpcf7-form-control-wrap college_name"><input type="text" name="schoolName_'+educationNumber+'" value="" size="35" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td></tr><tr><td>University/Board</td><td><span class="wpcf7-form-control-wrap uni_name"><input type="text" name="board_'+educationNumber+'" value="" size="35" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false"></span></td></tr><tr><td>Qualification<span style="color: red;"></span></td><td><span class="wpcf7-form-control-wrap p_qual"><select name="qualification_'+educationNumber+'" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="B.Tech">B.Tech</option><option value="B.Tech+M.Tech">B.Tech+M.Tech</option><option value="MCA">MCA</option><option value="BCA">BCA</option><option value="B.E.">B.E.</option><option value="B.Tech+MBA">B.Tech+MBA</option><option value="BCA+MCA">BCA+MCA</option><option value="Diploma in Engineering">Diploma in Engineering</option><option value="PGDM">PGDM</option><option value="B.A.">B.A.</option><option value="B.Com">B.Com</option><option value="Other Qualification">Other Qualification</option></select></span></td></tr><tr><td>Status</td><td><span class="wpcf7-form-control-wrap Semester"><select name="status_'+educationNumber+'" class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false"><option value="completed">Completed</option><option value="Pursuing">Pursuing</option></select></span></td></tr><tr><td>Completed Year</td><td><input type="text" name="completedYear_'+educationNumber+'" size="35"></td></tr><tr><td>Grade/ % marks</td><td><input type="text" name="marksSecured_'+educationNumber+'" size="35"></td></tr></tbody></table></td></tr>');
-    $("#educationNumber").val(educationNumber);
-    
-});
 	 
 });
 </script>

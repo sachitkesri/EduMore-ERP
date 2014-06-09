@@ -1,8 +1,8 @@
 package com.edumore.admin;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ import com.edumore.admin.service.NewCourseBusiness;
 /**
  * Servlet implementation class AddNewCourse
  */
-@WebServlet("/AddCourse")
+@WebServlet("/admin/AddCourse")
 public class AddNewCourse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,18 +45,21 @@ public class AddNewCourse extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession httpSession = request.getSession();
 		CourseBean courseBean = new CourseBean();
-		courseBean.setCourseTitle(request.getParameter("courseTitle"));
-		courseBean.setAdminUsername((String)httpSession.getAttribute("username"));
+		courseBean.setCourseTitle(request.getParameter("courseTitle").toString());
+		courseBean.setCourseDuration(Integer.parseInt(request.getParameter("courseDuration").toString()));
+		courseBean.setCourseFee(Long.parseLong(request.getParameter("courseFee").toString()));
+		courseBean.setAdminId(Integer.parseInt(httpSession.getAttribute("userLoginId").toString()));
 		NewCourseBusiness courseBusiness = new NewCourseBusiness();
 
 		try {
 			courseBusiness.insertNewCourse(courseBean);
-			request.setAttribute("status", "new course added");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			request.setAttribute("statusMsg", "Course Added Successfully");
+			request.setAttribute("statusMsgColor", "green");
+			RequestDispatcher rd = request.getRequestDispatcher("newCourse.jsp");
+			rd.forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("statusMsg", "Some error occured. Try again!!");
+			request.setAttribute("statusMsgColor", "red");
 			e.printStackTrace();
 		}
 	}

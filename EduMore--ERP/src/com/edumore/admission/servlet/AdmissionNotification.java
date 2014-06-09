@@ -18,7 +18,7 @@ import com.edumore.admission.business.AdmissionNotificationDBusiness;
 /**
  * Servlet implementation class AdmissionNotification
  */
-@WebServlet("/loadPendingAdmission")
+@WebServlet("/academic/loadPendingAdmission")
 public class AdmissionNotification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
