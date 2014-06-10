@@ -78,7 +78,7 @@ public class NewEnquiryDAO {
 		updaeEducation(enquiryBean);
 		updateAddress(enquiryBean, enquiryBean.getCurrentAddress(), "current");
 		updateAddress(enquiryBean, enquiryBean.getPermanentAddress(), "permanent");
-		String sql = "update enquiry_details SET first_name = ?,middle_name = ?,last_name = ?,residence_number = ?,mobile_number = ?,email_id = ?,date_of_birth = ?,gender = ?,father_first_name =  ?,father_middle_name = ?,father_last_name = ?,father_mobile_number = ?,father_residence_number = ? where enquiry_id = " + enquiryBean.getEnquiry_id();
+		String sql = "update enquiry_details SET first_name = ?,middle_name = ?,last_name = ?,residence_number = ?,mobile_number = ?,email_id = ?,date_of_birth = ?,gender = ?,father_first_name =  ?,father_middle_name = ?,father_last_name = ?,father_mobile_number = ?,father_residence_number = ?, course_id = ? where enquiry_id = " + enquiryBean.getEnquiry_id();
 		PreparedStatement statement = (PreparedStatement) con.prepareStatement(sql);
 		statement.setString(1, enquiryBean.getFirstName());
 		statement.setString(2, enquiryBean.getMiddleName());
@@ -93,6 +93,7 @@ public class NewEnquiryDAO {
 		statement.setString(11, enquiryBean.getFatherLastName());
 		statement.setString(12, enquiryBean.getFatherMobileNumber());
 		statement.setString(13, enquiryBean.getFatherResidenceNumber());
+		statement.setInt(14, enquiryBean.getCourseId());
 		int updated = statement.executeUpdate();
 		con.commit();
 		if (updated == 1) {
